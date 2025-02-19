@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Prepaid Recharge</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      padding-top: 20px;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #333;
+      color: white;
+      padding-top: 20px;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+      display: block;
+    }
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+      .main-content {
+        margin-left: 0;
+      }
+    }
+    @media (max-width: 576px) {
+      .table-responsive {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h4 class="text-center">Admin Dashboard</h4>
+    <a href="index.html">Dashboard</a>
+    <a href="userlist.html">Users List</a>
+    <a href="manageplans.html">Manage Plans</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="container-fluid">
+      <!-- Top Bar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+          <span class="navbar-brand text-light">Prepaid Recharge Admin</span>
+          <div class="d-flex">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                    <li><button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Dashboard Overview -->
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <div class="card bg-primary text-light">
+            <div class="card-body">
+              <h5 class="card-title">Total Users</h5>
+              <p class="card-text">150</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card bg-success text-light">
+            <div class="card-body">
+              <h5 class="card-title">Total Recharges</h5>
+              <p class="card-text">600</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card bg-info text-light">
+            <div class="card-body">
+              <h5 class="card-title">Total Amount</h5>
+              <p class="card-text">50000</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card bg-success text-light">
+            <div class="card-body">
+              <h5 class="card-title">Total Profit</h5>
+              <p class="card-text">200000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <h3 class="my-4">&emsp;Total Recharges &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sales Amount</h3>
+      <div class="container d-flex flex-row my-4">
+        <img src="assets/download.png" width="100" height="300" alt="image" style="width: 50%;">
+        <img src="assets/download (1).png" width="100" height="300" alt="image2" style="width: 50%;">
+      </div> -->
+      
+      <h3 class="mt-4">Users Recharge Plans Expiring in 3 Days</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
+              <tr>
+                  <th>Name</th>
+                  <th>Mobile Number</th>
+                  <th>Email ID</th>
+                  <th>Plan</th>
+                  <th>Date of Payment</th>
+                  <th>Payment Mode</th>
+                  <th>History</th>
+              </tr>
+          </thead>
+          <tbody id="expiry-users">
+              <tr>
+                  <td>Rajesh</td>
+                  <td>9876543210</td>
+                  <td>rajesh@example.com</td>
+                  <td>Unlimited 499</td>
+                  <td>2025-02-01</td>
+                  <td>Credit Card</td>
+                  <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal" onclick="loadHistory('Rajesh')">History</button></td>
+              </tr>
+              <tr>
+                  <td>Vikram</td>
+                  <td>9123456789</td>
+                  <td>vikram@example.com</td>
+                  <td>Premium 799</td>
+                  <td>2025-01-20</td>
+                  <td>Net Banking</td>
+                  <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal" onclick="loadHistory('Vikram')">History</button></td>
+              </tr>
+              <tr>
+                <td>Amit</td>
+                <td>9876501234</td>
+                <td>amit@example.com</td>
+                <td>Basic 299</td>
+                <td>2025-01-10</td>
+                <td>Debit Card</td>
+                <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal" onclick="loadHistory('Amit')">History</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Confirmation Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              Are you sure you want to logout?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+  <!-- History Modal -->
+  <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="historyModalLabel">Transaction History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="user-history"></p>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Add Plan Modal -->
+  <div class="modal fade" id="addPlanModal" tabindex="-1" aria-labelledby="addPlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addPlanModalLabel">Add New Recharge Plan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addPlanForm">
+            <div class="mb-3">
+              <label for="planName" class="form-label">Plan Name</label>
+              <input type="text" class="form-control" id="planName" required>
+            </div>
+            <div class="mb-3">
+              <label for="planAmount" class="form-label">Amount</label>
+              <input type="number" class="form-control" id="planAmount" required>
+            </div>
+            <div class="mb-3">
+              <label for="planValidity" class="form-label">Validity</label>
+              <input type="text" class="form-control" id="planValidity" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Plan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modify Plan Modal -->
+  <div class="modal fade" id="modifyPlanModal" tabindex="-1" aria-labelledby="modifyPlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modifyPlanModalLabel">Modify Plan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="modifyPlanForm">
+          <div class="modal-body">
+            <input type="hidden" id="modifyPlanId">
+            <div class="mb-3">
+              <label for="modifyPlanName" class="form-label">Plan Name</label>
+              <input type="text" class="form-control" id="modifyPlanName" required>
+            </div>
+            <div class="mb-3">
+              <label for="modifyPlanAmount" class="form-label">Amount</label>
+              <input type="number" class="form-control" id="modifyPlanAmount" required>
+            </div>
+            <div class="mb-3">
+              <label for="modifyPlanValidity" class="form-label">Validity</label>
+              <input type="text" class="form-control" id="modifyPlanValidity" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script>
+    // Sample function to simulate user history data
+    function loadHistory(userName) {
+    const history = {
+        "Rajesh": [
+            "Unlimited - ₹499 - 2025-01-01",
+            "Basic - ₹199 - 2025-01-12",
+            "Premium - ₹799 - 2024-12-15",
+            "Unlimited - ₹499 - 2024-11-30",
+            "Data - ₹249 - 2024-10-05"
+        ],
+        "Vikram": [
+            "Premium - ₹799 - 2025-01-20",
+            "Data - ₹299 - 2024-12-10",
+            "Unlimited - ₹699 - 2024-11-25",
+            "Basic - ₹199 - 2024-10-10",
+            "Premium - ₹799 - 2024-09-18"
+        ],
+        "Amit": [
+            "Premium - ₹799 - 2025-01-20",
+            "Data - ₹299 - 2024-12-10",
+            "Unlimited - ₹699 - 2024-11-25",
+            "Basic - ₹199 - 2024-10-10",
+            "Premium - ₹799 - 2024-09-18"
+        ]
+        // Add other users here
+    };
+
+    const userHistory = history[userName] || [];
+    const historyElement = document.getElementById('user-history');
+    
+    // Clear previous history
+    historyElement.innerHTML = `<strong>${userName} History:</strong>`;
+
+    // Create a table for the history entries
+    const table = document.createElement('table');
+    table.classList.add('table', 'table-striped', 'table-bordered');
+
+    // Add table headers
+    const tableHeader = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    const headers = ['Plan', 'Amount', 'Date'];
+
+    headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+    });
+
+    tableHeader.appendChild(headerRow);
+    table.appendChild(tableHeader);
+
+    // Add table body
+    const tableBody = document.createElement('tbody');
+    
+    userHistory.forEach(entry => {
+        const row = document.createElement('tr');
+        const entryDetails = entry.split(' - ');
+
+        if (entryDetails.length === 3) {
+            const planCell = document.createElement('td');
+            planCell.textContent = entryDetails[0];
+            row.appendChild(planCell);
+
+            const amountCell = document.createElement('td');
+            amountCell.textContent = entryDetails[1];
+            row.appendChild(amountCell);
+
+            const dateCell = document.createElement('td');
+            dateCell.textContent = entryDetails[2];
+            row.appendChild(dateCell);
+        }
+        
+        tableBody.appendChild(row);
+    });
+
+    table.appendChild(tableBody);
+    historyElement.appendChild(table);
+  }
+
+
+    let modifyPlanId;
+    function modifyPlan(planId) {
+      modifyPlanId = planId;
+      const row = document.querySelector(`#plansTable tbody tr:nth-child(${planId})`);
+      document.getElementById('modifyPlanName').value = row.cells[1].textContent;
+      document.getElementById('modifyPlanAmount').value = row.cells[2].textContent.replace('₹', '');
+      document.getElementById('modifyPlanValidity').value = row.cells[3].textContent;
+      $('#modifyPlanModal').modal('show');
+    }
+
+    document.getElementById('modifyPlanForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('modifyPlanName').value;
+      const amount = document.getElementById('modifyPlanAmount').value;
+      const validity = document.getElementById('modifyPlanValidity').value;
+
+      const row = document.querySelector(`#plansTable tbody tr:nth-child(${modifyPlanId})`);
+      row.cells[1].textContent = name;
+      row.cells[2].textContent = `₹${amount}`;
+      row.cells[3].textContent = validity;
+
+      $('#modifyPlanModal').modal('hide');
+    });
+
+
+    function deletePlan(planId) {
+      if (confirm(`Are you sure you want to delete plan ${planId}?`)) {
+      // Find the row in the table corresponding to the planId
+      const table = document.getElementById('plansTable').getElementsByTagName('tbody')[0];
+      const rows = table.rows;
+
+      // Iterate through the rows to find the matching row
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const rowId = parseInt(row.cells[0].textContent, 10); // Get the ID from the first cell
+
+        if (rowId === planId) {
+          table.deleteRow(i); // Remove the row from the table
+          break;
+        }
+      }
+
+      // Update the remaining rows' numbering
+      updateRowNumbers();
+    }
+}
+
+// Helper function to update row numbers after a delete
+function updateRowNumbers() {
+  const table = document.getElementById('plansTable').getElementsByTagName('tbody')[0];
+  const rows = table.rows;
+
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].cells[0].textContent = i + 1; // Update the row number
+  }
+}
+
+    // Add new plan dynamically to the table
+    document.getElementById('addPlanForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const planName = document.getElementById('planName').value;
+      const planAmount = document.getElementById('planAmount').value;
+      const planValidity = document.getElementById('planValidity').value;
+
+      // Get the plans table and append the new plan row
+      const plansTable = document.getElementById('plansTable').getElementsByTagName('tbody')[0];
+      const newRow = plansTable.insertRow();
+
+      newRow.innerHTML = `
+        <td>${plansTable.rows.length}</td>
+        <td>${planName}</td>
+        <td>₹${planAmount}</td>
+        <td>${planValidity}</td>
+        <td>
+          <button class="btn btn-warning" onclick="modifyPlan(${plansTable.rows.length})">Modify</button>
+          <button class="btn btn-danger" onclick="deletePlan(${plansTable.rows.length})">Delete</button>
+        </td>
+      `;
+
+      // Close the modal after adding
+      $('#addPlanModal').modal('hide');
+    });
+
+    function logout() {
+        // Redirect to the login page
+        window.location.href = "AdminLogin.html"; // Replace with the actual login page URL
+    }
+  </script>
+</body>
+</html>
