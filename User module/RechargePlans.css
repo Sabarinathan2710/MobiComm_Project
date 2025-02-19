@@ -1,0 +1,116 @@
+/* rechargePlans.css */
+
+/* Define Color Palette in :root */
+:root {
+    --primary-color: #FF5722; /* Bright Orange */
+    --primary-hover: #E64A19; /* Darker Orange */
+    --secondary-color: #009688; /* Cool Teal */
+    --background-color: #F5F5F5; /* Soft Grey */
+    --navbar-footer-color: #263238; /* Deep Navy Blue */
+    --text-heading: #212121; /* Charcoal */
+    --text-body: #757575; /* Dim Grey */
+    --modal-header: #009688; /* Cool Teal */
+    --modal-footer-secondary: #757575; /* Dim Grey */
+    --modal-footer-secondary-hover: #616161; /* Darker Grey */
+}
+
+/* General Styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-heading);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-footer-color);
+}
+
+.navbar .nav-link {
+    color: var(--background-color);
+    transition: background-color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--navbar-footer-color);
+    color: var(--background-color);
+    padding: 10px 0;
+}
+
+/* Recharge Categories Section */
+.container .display-5 {
+    color: var(--text-heading);
+}
+
+.nav-pills .nav-link {
+    background-color: var(--navbar-footer-color);
+    color: var(--background-color);
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.nav-pills .nav-link:hover {
+    background-color: var(--primary-hover);
+    color: var(--background-color);
+}
+
+/* Cards */
+.card {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: transform 0.3s ease;
+    background-color: var(--background-color);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: var(--text-heading);
+}
+
+.card-text {
+    color: var(--text-body);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--background-color);
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Modal */
+.modal-header {
+    background-color: var(--modal-header);
+    color: var(--background-color);
+}
+
+.modal-footer .btn-secondary {
+    background-color: var(--modal-footer-secondary);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: var(--modal-footer-secondary-hover);
+}

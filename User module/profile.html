@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/CSS/main.main.css">
+    <link rel="stylesheet" href="indexstyle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto;
+            display: block;
+            border: 3px solid #b99e22; /* Optional: Highlight the border for visibility */
+        }
+
+        .profile-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-name {
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 15px;
+        }
+
+        .input-box {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .edit-btn {
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light" href="#">
+                    <img src="" alt="" width="40" height="40" class="d-inline-block align-text-top"> MobiComm
+                </a>
+                <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon bg-light"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav justify-content-end mx-auto mb-2 mb-lg-0 nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-light rounded-pill px-4 py-2" href="index.html">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-light rounded-pill px-4 py-2" href="RechargePlans.html">RECHARGE PLANS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-light rounded-pill px-4 py-2" href="history.html">HISTORY</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active fw-bold text-light rounded-pill px-4 py-2" aria-current="page" href="profile.html" style="background-color: #b99e22;">PROFILE</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Profile Section -->
+    <div class="container my-5">
+        <div class="profile-container">
+            <!-- Updated image with placeholder -->
+            <img src="assets/img2.jpg" alt="Profile Image" class="profile-image">
+            <p class="profile-name">John Doe</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="profileForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label"><strong>Email:</strong></label>
+                                <div class="d-flex">
+                                    <input type="email" id="email" class="input-box" value="john.doe@example.com" readonly>
+                                    <button type="button" class="btn btn-primary edit-btn ms-2" id="editEmailBtn">Edit</button>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label"><strong>Phone:</strong></label>
+                                <input type="text" id="phone" class="input-box" value="9790316542" readonly>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address" class="form-label"><strong>Address:</strong></label>
+                                <input type="text" id="address" class="input-box" value="123 Main St, Springfield, IL, 62701" readonly>
+                            </div>
+
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3 mt-4">
+        <div class="container">
+            <p>&copy; 2025 MobiComm Prepaid Recharge App. All Rights Reserved.</p>
+            <p>Designed by Sabari Nathan[Your Company/Team Name].</p>
+            <p>
+                <a href="#" class="text-light me-3">Privacy Policy</a>
+                <a href="#" class="text-light">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const emailField = document.getElementById('email');
+        const editEmailBtn = document.getElementById('editEmailBtn');
+        
+
+        editEmailBtn.addEventListener('click', function() {
+            if (emailField.hasAttribute('readonly')) {
+                emailField.removeAttribute('readonly');
+                emailField.focus();
+                editEmailBtn.textContent = 'Save';
+            } else {
+                emailField.setAttribute('readonly', true);
+                editEmailBtn.textContent = 'Edit';
+                alert('Email updated successfully!');
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
