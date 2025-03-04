@@ -1,110 +1,190 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="/CSS/main.main.css">
-    <link rel="stylesheet" href="indexstyle.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Profile | MobiComm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto;
-            display: block;
-            border: 3px solid #b99e22; /* Optional: Highlight the border for visibility */
+        :root {
+            --primary-color: #2A5C82;
+            --primary-hover: #1E4560;
+            --secondary-color: #F5B915;
+            --background-color: #F4F6FA;
+            --text-heading: #50392c;
+            --text-body: #5A6A7F;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-heading);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), #1e40af);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-pills .nav-link.active {
+            background: var(--secondary-color) !important;
+            color: white !important;
+            border-radius: 0.5rem;
         }
 
         .profile-container {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary-color);
+            margin: 0 auto;
+            display: block;
         }
 
         .profile-name {
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin-top: 15px;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-top: 1rem;
+            color: var(--text-heading);
+        }
+
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--text-heading);
         }
 
         .input-box {
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.25rem;
             width: 100%;
+            transition: all 0.3s ease;
         }
 
-        .edit-btn {
-            margin-top: 10px;
-            display: inline-block;
+        .input-box:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(42, 92, 130, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            margin-top: 80px;
+        }
+
+        .social-link {
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--secondary-color);
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand text-light" href="#">
-                    <img src="" alt="" width="40" height="40" class="d-inline-block align-text-top"> MobiComm
-                </a>
-                <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon bg-light"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav justify-content-end mx-auto mb-2 mb-lg-0 nav-pills">
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold text-light rounded-pill px-4 py-2" href="index.html">HOME</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold text-light rounded-pill px-4 py-2" href="RechargePlans.html">RECHARGE PLANS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold text-light rounded-pill px-4 py-2" href="history.html">HISTORY</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fw-bold text-light rounded-pill px-4 py-2" aria-current="page" href="profile.html" style="background-color: #b99e22;">PROFILE</a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="fw-bold">MobiComm</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="RechargePlans.html">Plans</a></li>
+                    <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="profile.html">Profile</a></li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Profile Section -->
-    <div class="container my-5">
+    <div class="container py-5">
         <div class="profile-container">
-            <!-- Updated image with placeholder -->
             <img src="assets/img2.jpg" alt="Profile Image" class="profile-image">
-            <p class="profile-name">John Doe</p>
+            <p class="profile-name"></p>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body p-4">
                         <form id="profileForm">
-                            <div class="mb-3">
-                                <label for="email" class="form-label"><strong>Email:</strong></label>
-                                <div class="d-flex">
-                                    <input type="email" id="email" class="input-box" value="john.doe@example.com" readonly>
-                                    <button type="button" class="btn btn-primary edit-btn ms-2" id="editEmailBtn">Edit</button>
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Email</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <input type="email" id="email" class="input-box" readonly>
+                                    <button type="button" class="btn btn-primary" id="editEmailBtn">Edit</button>
+                                </div>
+                                <div class="error-message" id="email-error">
+                                    <i class="fas fa-exclamation-circle me-2"></i>
+                                    Please enter a valid email address.
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="phone" class="form-label"><strong>Phone:</strong></label>
-                                <input type="text" id="phone" class="input-box" value="9790316542" readonly>
+                            <div class="mb-4">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" id="phone" class="input-box" readonly>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="address" class="form-label"><strong>Address:</strong></label>
+                            <div class="mb-4">
+                                <label for="address" class="form-label">Address</label>
                                 <input type="text" id="address" class="input-box" value="123 Main St, Springfield, IL, 62701" readonly>
                             </div>
-
-                            
+                            <div class="mb-4">
+                                <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -113,35 +193,126 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light text-center py-3 mt-4">
+    <footer class="py-5">
         <div class="container">
-            <p>&copy; 2025 MobiComm Prepaid Recharge App. All Rights Reserved.</p>
-            <p>Designed by Sabari Nathan[Your Company/Team Name].</p>
-            <p>
-                <a href="#" class="text-light me-3">Privacy Policy</a>
-                <a href="#" class="text-light">Terms of Service</a>
-            </p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="mb-3">MobiComm</h5>
+                    <p>Your trusted mobile recharge partner since 2020</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">About Us</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="social-link"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <p class="text-center mb-0">&copy; 2025 MobiComm. All rights reserved</p>
         </div>
     </footer>
 
     <script>
-        const emailField = document.getElementById('email');
-        const editEmailBtn = document.getElementById('editEmailBtn');
-        
+        // Fetch user data from localStorage
+       // Fetch user data from localStorage
+const user = JSON.parse(localStorage.getItem('user'));
 
-        editEmailBtn.addEventListener('click', function() {
-            if (emailField.hasAttribute('readonly')) {
-                emailField.removeAttribute('readonly');
-                emailField.focus();
-                editEmailBtn.textContent = 'Save';
-            } else {
-                emailField.setAttribute('readonly', true);
-                editEmailBtn.textContent = 'Edit';
-                alert('Email updated successfully!');
+// Debugging: Check the user object
+console.log(user);
+
+if (!user || !user.email) {
+    alert('No user data found or email is missing. Redirecting to login.');
+    window.location.href = 'login.html';
+} else {
+    document.querySelector('.profile-name').textContent = user.name;
+    document.getElementById('email').value = user.email;
+    document.getElementById('phone').value = user.mobileNumber;
+}
+
+const emailField = document.getElementById('email');
+const editEmailBtn = document.getElementById('editEmailBtn');
+const emailError = document.getElementById('email-error');
+let originalEmail = emailField.value;
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+editEmailBtn.addEventListener('click', async function () {
+    if (emailField.hasAttribute('readonly')) {
+        emailField.removeAttribute('readonly');
+        emailField.focus();
+        editEmailBtn.textContent = 'Save';
+        emailError.style.display = 'none';
+    } else {
+        const newEmail = emailField.value.trim();
+
+        if (!emailRegex.test(newEmail)) {
+            emailError.style.display = 'block';
+            return;
+        }
+
+        if (newEmail === originalEmail) {
+            alert('Please enter a different email address.');
+            return;
+        }
+
+        try {
+            // Fetch all users and find the matching user by email
+            const allUsersResponse = await fetch(`http://localhost:3000/users`);
+            const allUsers = await allUsersResponse.json();
+
+            const matchingUser = allUsers.find((u) => u.email === originalEmail);
+
+            if (!matchingUser) {
+                throw new Error('User not found in the database.');
             }
-        });
+
+            // Prepare updated user object
+            const updatedUser = { ...matchingUser, email: newEmail };
+
+            // Update the user's email using PUT
+            const response = await fetch(`http://localhost:3000/users/${matchingUser.email}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedUser),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Server responded with status: ${response.status}`);
+            }
+
+            alert('Email updated successfully!');
+            emailField.setAttribute('readonly', true);
+            editEmailBtn.textContent = 'Edit';
+            originalEmail = newEmail;
+
+            // Update email in localStorage and UI
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+        } catch (error) {
+            console.error('Error updating email:', error);
+            alert('Failed to update email.');
+        }
+    }
+});
+
+    function logout(){
+        window.location.href = "login.html";
+    }
+
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - Prepaid Recharge</title>
+  <title>Manage Plans</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
   <style>
     body {
       padding-top: 20px;
+      font-family: 'Poppins', sans-serif;
+      background-color: aliceblue;
     }
     .sidebar {
       position: fixed;
       top: 0;
       left: 0;
       height: 100%;
-      width: 250px;
-      background-color: #333;
+      width: 200px;
+      background-color: #472525;
       color: white;
       padding-top: 20px;
     }
@@ -31,23 +32,34 @@
       background-color: #575757;
     }
     .main-content {
-      margin-left: 250px;
+      margin-left: 200px;
       padding: 20px;
     }
-    .card {
-      margin-bottom: 20px;
+    @media (max-width: 768px) {
+    .sidebar {
+      position: static; 
+      width: 100%; 
+      height: auto; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
     }
+    .main-content {
+      margin-left: 0; 
+    }
+  }
   </style>
 </head>
 <body>
   <!-- Sidebar -->
   <div class="sidebar">
     <h4 class="text-center">Admin Dashboard</h4>
-    <a href="index.html">Dashboard</a>
+    <a href="home.html">Dashboard</a>
     <a href="userlist.html">Users List</a>
     <a href="manageplans.html">Manage Plans</a>
   </div>
 
+  <!-- Main Content -->
   <div class="main-content">
     <div class="container-fluid">
       <!-- Top Bar -->
@@ -59,7 +71,7 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 Admin
               </button>
-              <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
                 <li>
                   <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
                 </li>
@@ -70,29 +82,31 @@
       </nav>
 
       <div class="d-flex justify-content-between align-items-center m-3">
-        <h2 class="text-center" style="color: #6D2323; margin-bottom: 0;">Modify Plans</h2>
+        <h2>Manage Plans</h2>
         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addPlanModal">+ Add Plan</button>
       </div>
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
           <thead class="table-dark">
             <tr>
-              <th>Plan ID</th>
-              <th>Plan Category</th>
-              <th>Plan Price</th>
-              <th>Description</th>
+              <th>ID</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Benefits</th>
+              <th>Validity</th>
+              <th>Additional Benefits</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody id="planTableBody">
-            <!-- Plans will be dynamically loaded here -->
+            <!-- Data will be dynamically added here -->
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- Logout modal -->
+  <!-- Logout Modal -->
   <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -111,84 +125,6 @@
     </div>
   </div>
 
-  <!-- Add Plan Modal -->
-  <div class="modal fade" id="addPlanModal" tabindex="-1" aria-labelledby="addPlanModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addPlanModalLabel">Add New Plan</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="newPlanId" class="form-label">Plan ID</label>
-            <input type="text" class="form-control" id="newPlanId" />
-          </div>
-          <div class="mb-3">
-            <label for="newPlanCategory" class="form-label">Plan Category</label>
-            <select class="form-select" id="newPlanCategory">
-              <option value="Unlimited Data Plans">Unlimited Data Plans</option>
-              <option value="Popular Plans">Popular Plans</option>
-              <option value="Validity Plans">Validity Plans</option>
-              <option value="Data Plans Only">Data Plans Only</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="newPlanPrice" class="form-label">Plan Price</label>
-            <input type="text" class="form-control" id="newPlanPrice" />
-          </div>
-          <div class="mb-3">
-            <label for="newPlanDescription" class="form-label">Plan Description</label>
-            <textarea class="form-control" id="newPlanDescription" rows="3"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-danger" onclick="addNewPlan()">Add Plan</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modify Plan Modal -->
-  <div class="modal fade" id="modifyPlanModal" tabindex="-1" aria-labelledby="modifyPlanModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modifyPlanModalLabel">Modify Plan</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="modifyPlanId" class="form-label">Plan ID</label>
-            <input type="text" class="form-control" id="modifyPlanId" />
-          </div>
-          <div class="mb-3">
-            <label for="modifyPlanCategory" class="form-label">Plan Category</label>
-            <select class="form-select" id="modifyPlanCategory">
-              <option value="Unlimited Data Plans">Unlimited Data Plans</option>
-              <option value="Popular Plans">Popular Plans</option>
-              <option value="Validity Plans">Validity Plans</option>
-              <option value="Data Plans Only">Data Plans Only</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="modifyPlanPrice" class="form-label">Plan Price</label>
-            <input type="text" class="form-control" id="modifyPlanPrice" />
-          </div>
-          <div class="mb-3">
-            <label for="modifyPlanDescription" class="form-label">Plan Description</label>
-            <textarea class="form-control" id="modifyPlanDescription" rows="3"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-danger" onclick="saveModifiedPlan()">Save Changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Delete Plan Modal -->
   <div class="modal fade" id="deletePlanModal" tabindex="-1" aria-labelledby="deletePlanModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -198,98 +134,199 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Are you sure you want to delete this plan?</p>
+          Are you sure you want to delete this plan?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-danger" onclick="deletePlan()">Delete Plan</button>
+          <button type="button" class="btn btn-danger" id="confirmDeletePlanButton">Delete</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
+  <!-- Add/Modify Plan Modal -->
+  <div class="modal fade" id="addPlanModal" tabindex="-1" aria-labelledby="addPlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Add/Modify Plan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="planForm">
+            <div class="mb-3">
+              <label for="planId" class="form-label">Plan ID</label>
+              <input type="number" class="form-control" id="planId" required>
+            </div>
+            <div class="mb-3">
+              <label for="planCategory" class="form-label">Category</label>
+              <select class="form-select" id="planCategory" required>
+                <option value="Popular Plans">Popular Plans</option>
+                <option value="Validity Plans">Validity Plans</option>
+                <option value="Data Plans">Data Plans</option>
+                <option value="Unlimited Data Plans">Unlimited Data Plans</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="planPrice" class="form-label">Price</label>
+              <input type="number" class="form-control" id="planPrice" required>
+            </div>
+            <div class="mb-3">
+              <label for="planValidity" class="form-label">Validity</label>
+              <input type="text" class="form-control" id="planValidity" required>
+            </div>
+            <div class="mb-3">
+              <label for="planBenefits" class="form-label">Benefits</label>
+              <textarea class="form-control" id="planBenefits" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="planAdditionalBenefits" class="form-label">Additional Benefits</label>
+              <textarea class="form-control" id="planAdditionalBenefits" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="savePlanButton">Save Plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
   <script>
-    let plans = Array.from({ length: 15 }, (_, i) => ({
-      id: `PID${i + 1}`,
-      category: ["Unlimited Data Plans", "Popular Plans", "Validity Plans", "Data Plans Only"][i % 4], // Assign categories cyclically
-      price: `₹${(i + 1) * 100 + 99}`,
-      description: "1.5GB/day, 28 days, Unlimited Calls"
-    }));
-    let planIndexToModify;
+    const apiUrl = "http://localhost:3000/plans";
+    let plans = [];
+    let isEditMode = false;
+    let editPlanId = null;
+    let deletePlanId = null;
 
+    // Fetch plans from JSON server
+    async function fetchPlans() {
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        plans = await response.json();
+        renderPlans();
+      } catch (error) {
+        console.error("Error fetching plans:", error);
+      }
+    }
+
+    // Render plans in the table
     function renderPlans() {
-      const planTableBody = document.getElementById("planTableBody");
-      planTableBody.innerHTML = "";
+      const tableBody = document.getElementById("planTableBody");
+      tableBody.innerHTML = "";
       plans.forEach((plan, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${plan.id}</td>
-          <td>${plan.category}</td>
-          <td>${plan.price}</td>
-          <td>${plan.description}</td>
-          <td>
-            <button class="btn btn-sm btn-success" onclick="openModifyModal(${index})">Modify</button>
-            <button class="btn btn-sm btn-danger" onclick="openDeleteModal(${index})">Delete</button>
-          </td>
-        `;
-        planTableBody.appendChild(row);
+        const row = `
+          <tr>
+            <td>${plan.id}</td>
+            <td>${plan.category}</td>
+            <td>${plan.price}</td>
+            <td>${plan.benefits}</td>
+            <td>${plan.validity}</td>
+            <td>${plan.additionalBenefits}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" onclick="openModifyModal(${index})">Modify</button>
+              <button class="btn btn-danger btn-sm my-2" onclick="openDeleteModal(${index})">Delete</button>
+            </td>
+          </tr>`;
+        tableBody.innerHTML += row;
       });
     }
 
-    function addNewPlan() {
-      const id = document.getElementById("newPlanId").value;
-      const category = document.getElementById("newPlanCategory").value;
-      const price = document.getElementById("newPlanPrice").value;
-      const description = document.getElementById("newPlanDescription").value;
-      if (id && category && price && description) {
-        plans.push({ id, category, price, description });
-        renderPlans();
-        bootstrap.Modal.getInstance(document.getElementById("addPlanModal")).hide();
-      }
+    // Open modal for adding a new plan
+    function openAddModal() {
+      isEditMode = false;
+      editPlanId = null;
+      document.getElementById("modalTitle").textContent = "Add Plan";
+      clearModalFields();
+      new bootstrap.Modal(document.getElementById("addPlanModal")).show();
     }
 
+    // Open modal for modifying a plan
     function openModifyModal(index) {
-      planIndexToModify = index;
+      isEditMode = true;
       const plan = plans[index];
-      document.getElementById("modifyPlanId").value = plan.id;
-      document.getElementById("modifyPlanCategory").value = plan.category;
-      document.getElementById("modifyPlanPrice").value = plan.price;
-      document.getElementById("modifyPlanDescription").value = plan.description;
-      new bootstrap.Modal(document.getElementById("modifyPlanModal")).show();
+      editPlanId = plan.id;
+      document.getElementById("modalTitle").textContent = "Modify Plan";
+      document.getElementById("planId").value = plan.id;
+      document.getElementById("planCategory").value = plan.category;
+      document.getElementById("planPrice").value = plan.price;
+      document.getElementById("planValidity").value = plan.validity;
+      document.getElementById("planBenefits").value = plan.benefits;
+      document.getElementById("planAdditionalBenefits").value = plan.additionalBenefits;
+      new bootstrap.Modal(document.getElementById("addPlanModal")).show();
     }
 
-    function saveModifiedPlan() {
-      const newId = document.getElementById("modifyPlanId").value;
-      const newCategory = document.getElementById("modifyPlanCategory").value;
-      const newPrice = document.getElementById("modifyPlanPrice").value;
-      const newDescription = document.getElementById("modifyPlanDescription").value;
-      if (newId && newCategory && newPrice && newDescription) {
-        plans[planIndexToModify] = { id: newId, category: newCategory, price: newPrice, description: newDescription };
-        renderPlans();
-        bootstrap.Modal.getInstance(document.getElementById("modifyPlanModal")).hide();
-      }
-    }
-
+    // Open modal for confirming deletion
     function openDeleteModal(index) {
-      planIndexToModify = index;
+      deletePlanId = plans[index].id;
       new bootstrap.Modal(document.getElementById("deletePlanModal")).show();
     }
 
-    function deletePlan() {
-      plans.splice(planIndexToModify, 1);
-      renderPlans();
-      bootstrap.Modal.getInstance(document.getElementById("deletePlanModal")).hide();
+    // Save plan (add or modify)
+    async function savePlan() {
+      const newPlan = {
+        id: document.getElementById("planId").value,
+        category: document.getElementById("planCategory").value,
+        price: document.getElementById("planPrice").value,
+        validity: document.getElementById("planValidity").value,
+        benefits: document.getElementById("planBenefits").value,
+        additionalBenefits : document.getElementById("planAdditionalBenefits").value
+      };
+
+      try {
+        const method = isEditMode ? "PUT" : "POST";
+        const url = isEditMode ? `${apiUrl}/${editPlanId}` : apiUrl;
+
+        const response = await fetch(url, {
+          method,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newPlan),
+        });
+
+        if (!response.ok) throw new Error("Failed to save plan.");
+
+        fetchPlans();
+        bootstrap.Modal.getInstance(document.getElementById("addPlanModal")).hide();
+      } catch (error) {
+        console.error("Error saving plan:", error);
+      }
     }
 
-    renderPlans();
+    // Confirm and delete a plan
+    async function deletePlan() {
+      try {
+        const response = await fetch(`${apiUrl}/${deletePlanId}`, { method: "DELETE" });
+        if (!response.ok) throw new Error("Failed to delete plan.");
+        fetchPlans();
+        bootstrap.Modal.getInstance(document.getElementById("deletePlanModal")).hide();
+      } catch (error) {
+        console.error("Error deleting plan:", error);
+      }
+    }
 
+    // Clear modal fields
+    function clearModalFields() {
+      document.getElementById("planId").value = "";
+      document.getElementById("planCategory").value = "Popular Plans";
+      document.getElementById("planPrice").value = "";
+      document.getElementById("planValidity").value = "";
+      document.getElementById("planBenefits").value = "";
+      document.getElementById("planAdditionalBenefits").value = "";
+    }
+
+    // Logout function
     function logout() {
-      // Redirect to the login page
-      window.location.href = "AdminLogin.html"; // Replace with the actual login page URL
+      window.location.href = "AdminLogin.html";
     }
+
+    // Initialize
+    document.getElementById("savePlanButton").onclick = savePlan;
+    document.getElementById("confirmDeletePlanButton").onclick = deletePlan;
+    fetchPlans();
   </script>
 </body>
 </html>

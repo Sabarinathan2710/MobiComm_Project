@@ -1,0 +1,793 @@
+{
+  "plans": [
+    {
+      "id": "1",
+      "category": "Popular Plans",
+      "price": 579,
+      "validity": "56 Days",
+      "benefits": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "Free JioHotstar OTT subscription for 1 Month",
+      "batch":"Recommended"
+    },
+    {
+      "id": "2",
+      "category": "Popular Plans",
+      "price": 619,
+      "validity": "60 Days",
+      "benefits": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "Free Zee5 OTT subscription for 1 Month"
+    },
+    {
+      "id": "3",
+      "category": "Popular Plans",
+      "price": 649,
+      "validity": "56 Days",
+      "benefits": "Unlimited calls, 2GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "Free Amazon Prime OTT subscription for 1 Month"
+    },
+    {
+      "id": "4",
+      "category": "Popular Plans",
+      "price": 689,
+      "validity": "60 Days",
+      "benefits": "Unlimited calls, 2GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "Free Netflix OTT subscription for 1 Month"
+    },
+    {
+      "id": "5",
+      "category": "Popular Plans",
+      "price": 749,
+      "validity": "56 Days",
+      "benefits": "Unlimited calls, 2.5GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "Free JioHotstar OTT subscription for 1 Month"
+    },
+    {
+      "id": "6",
+      "category": "Popular Plans",
+      "price": 799,
+      "validity": "60 Days",
+      "benefits": "Unlimited calls, 2.5GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "Free Netflix OTT subscription for 1 Month"
+    },
+    {
+      "id": "7",
+      "category": "Validity Plans",
+      "price": 209,
+      "validity": "28 Days",
+      "benefits": "Unlimited calls, 1GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "1GB Additional data excluding plans data"
+    },
+    {
+      "id": "8",
+      "category": "Validity Plans",
+      "price": 249,
+      "validity": "28 Days",
+      "benefits": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "2GB Additional data excluding plans data"
+    },
+    {
+      "id": "9",
+      "category": "Validity Plans",
+      "price": 299,
+      "validity": "28 Days",
+      "benefits": "Unlimited calls, 2GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "3GB Additional data excluding plans data"
+    },
+    {
+      "id": "10",
+      "category": "Validity Plans",
+      "price": 349,
+      "validity": "28 Days",
+      "benefits": "Unlimited calls, 2.5GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "4GB Additional data excluding plans data"
+    },
+    {
+      "id": "11",
+      "category": "Validity Plans",
+      "price": 399,
+      "validity": "28 Days",
+      "benefits": "Unlimited calls, 3GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "5GB Additional data excluding plans data"
+    },
+    {
+      "id": "12",
+      "category": "Data Plans",
+      "price": 26,
+      "validity": "1 Day",
+      "benefits": "1.5GB Data for One Day",
+      "additionalBenefits": "500 MB free data"
+    },
+    {
+      "id": "13",
+      "category": "Data Plans",
+      "price": 50,
+      "validity": "2 Days",
+      "benefits": "1.5GB/day Data for Two Days",
+      "additionalBenefits": "500 MB free data"
+    },
+    {
+      "id": "14",
+      "category": "Data Plans",
+      "price": 33,
+      "validity": "1 Day",
+      "benefits": "2GB Data for One Day",
+      "additionalBenefits": "1GB free data"
+    },
+    {
+      "id": "15",
+      "category": "Data Plans",
+      "price": 65,
+      "validity": "2 Days",
+      "benefits": "2GB Data/day for Two Days",
+      "additionalBenefits": "1GB free data"
+    },
+    {
+      "id": "16",
+      "category": "Data Plans",
+      "price": 45,
+      "validity": "1 Day",
+      "benefits": "2.5GB Data for One Day",
+      "additionalBenefits": "1GB free data"
+    },
+    {
+      "id": "17",
+      "category": "Data Plans",
+      "price": 85,
+      "validity": "2 Days",
+      "benefits": "2.5GB/day Data for Two Days",
+      "additionalBenefits": "1GB free data"
+    },
+    {
+      "id": "18",
+      "category": "Unlimited Data Plans",
+      "price": 11,
+      "validity": "1 Hour",
+      "benefits": "Unlimited Data for Only One Hour",
+      "additionalBenefits": "Calls for 20 Minutes"
+    },
+    {
+      "id": "19",
+      "category": "Unlimited Data Plans",
+      "price": 49,
+      "validity": "1 Day",
+      "benefits": "Unlimited Data for Only One Day",
+      "additionalBenefits": "Calls for 100 Minutes"
+    },
+    {
+      "id": "20",
+      "category": "Unlimited Data Plans",
+      "price": 98,
+      "validity": "2 Days",
+      "benefits": "Unlimited Data for Only Two Days",
+      "additionalBenefits": "Calls for 200 Minutes"
+    },
+    {
+      "id": "21",
+      "category": "Unlimited Data Plans",
+      "price": 121,
+      "validity": "3 Days",
+      "benefits": "Unlimited Data for Only Three Days",
+      "additionalBenefits": "Calls for 300 Minutes"
+    },
+    {
+      "id": "22",
+      "category": "Unlimited Data Plans",
+      "price": 149,
+      "validity": "4 Days",
+      "benefits": "Unlimited Data for Four Days",
+      "additionalBenefits": "Calls for 400 Minutes"
+    },
+    {
+      "id": "23",
+      "category": "Validity Plans",
+      "price": "199",
+      "validity": "28 Days",
+      "benefits": "Unlimited Calls, 2GB Data, 900 SMS",
+      "additionalBenefits": "Free Caller Tunes for 28 Days"
+    }
+  ],
+  "users": [
+    {
+      "name": "Rajesh",
+      "mobileNumber": "9876543210",
+      "email": "rajesh@example.com"
+    },
+    {
+      "name": "Vikram",
+      "mobileNumber": "9123456789",
+      "email": "vikram@example.com"
+    },
+    {
+      "name": "Amit",
+      "mobileNumber": "9876501234",
+      "email": "amit@example.com"
+    },
+    {
+      "name": "Anjali",
+      "mobileNumber": "9001234567",
+      "email": "anjali@example.com"
+    },
+    {
+      "name": "Karthik",
+      "mobileNumber": "9812345678",
+      "email": "karthik@example.com"
+    },
+    {
+      "name": "Priya",
+      "mobileNumber": "9123456789",
+      "email": "priya@example.com"
+    },
+    {
+      "name": "Vijay",
+      "mobileNumber": "9887654321",
+      "email": "vijay@example.com"
+    },
+    {
+      "name": "Deepa",
+      "mobileNumber": "9134567890",
+      "email": "deepa@example.com"
+    },
+    {
+      "name": "Rahul",
+      "mobileNumber": "9256347890",
+      "email": "rahul@example.com"
+    },
+    {
+      "name": "Neha",
+      "mobileNumber": "9298765432",
+      "email": "neha@example.com"
+    },
+    {
+      "name": "Pooja",
+      "mobileNumber": "9265432109",
+      "email": "pooja@example.com"
+    },
+    {
+      "name": "Ravi",
+      "mobileNumber": "9876543210",
+      "email": "ravi@example.com"
+    },
+    {
+      "name": "Sneha",
+      "mobileNumber": "9345678901",
+      "email": "sneha@example.com"
+    },
+    {
+      "name": "Arjun",
+      "mobileNumber": "9367812345",
+      "email": "arjun@example.com"
+    },
+    {
+      "name": "Varun",
+      "mobileNumber": "9487654321",
+      "email": "varun@example.com"
+    }
+  ],
+  "usersHistory": [
+    {
+      "name": "Rajesh",
+      "history": [
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹11",
+          "date": "2024-07-15",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹65",
+          "date": "2024-09-22",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹749",
+          "date": "2024-10-05",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹399",
+          "date": "2024-11-12",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹619",
+          "date": "2024-12-28",
+          "paymentMethod": "Credit Card"
+        }
+      ]
+    },
+    {
+      "name": "Vikram",
+      "history": [
+        {
+          "category": "Validity Plans",
+          "price": "₹209",
+          "date": "2024-08-19",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹33",
+          "date": "2024-09-30",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹98",
+          "date": "2024-11-10",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹799",
+          "date": "2024-12-15",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹349",
+          "date": "2025-01-25",
+          "paymentMethod": "Debit Card"
+        }
+      ]
+    },
+    {
+      "name": "Amit",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹26",
+          "date": "2024-08-22",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹49",
+          "date": "2024-09-11",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹299",
+          "date": "2024-10-05",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹689",
+          "date": "2024-12-02",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹85",
+          "date": "2025-01-30",
+          "paymentMethod": "UPI"
+        }
+      ]
+    },
+    {
+      "name": "Anjali",
+      "history": [
+        {
+          "category": "Popular Plans",
+          "price": "₹649",
+          "date": "2024-06-28",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹399",
+          "date": "2024-07-15",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹45",
+          "date": "2024-09-20",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹121",
+          "date": "2024-11-25",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹749",
+          "date": "2025-02-01",
+          "paymentMethod": "Credit Card"
+        }
+      ]
+    },
+    {
+      "name": "Karthik",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹26",
+          "date": "2024-04-01",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹149",
+          "date": "2024-05-10",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹299",
+          "date": "2024-07-12",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹579",
+          "date": "2024-10-30",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹349",
+          "date": "2025-01-15",
+          "paymentMethod": "Credit Card"
+        }
+      ]
+    },
+    {
+      "name": "Priya",
+      "history": [
+        {
+          "category": "Validity Plans",
+          "price": "₹209",
+          "date": "2024-03-15",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹45",
+          "date": "2024-05-20",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹98",
+          "date": "2024-07-05",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹619",
+          "date": "2024-09-15",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹65",
+          "date": "2025-01-01",
+          "paymentMethod": "Credit Card"
+        }
+      ]
+    },
+    {
+      "name": "Vijay",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹33",
+          "date": "2024-04-25",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹149",
+          "date": "2024-06-10",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹299",
+          "date": "2024-08-01",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹689",
+          "date": "2024-10-18",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹349",
+          "date": "2025-01-10",
+          "paymentMethod": "UPI"
+        }
+      ]
+    },
+    {
+      "name": "Deepa",
+      "history": [
+        {
+          "category": "Validity Plans",
+          "price": "₹209",
+          "date": "2024-03-30",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹85",
+          "date": "2024-06-01",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹49",
+          "date": "2024-08-05",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹749",
+          "date": "2024-10-22",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹349",
+          "date": "2025-01-05",
+          "paymentMethod": "UPI"
+        }
+      ]
+    },
+    {
+      "name": "Rahul",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹65",
+          "date": "2024-03-20",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹121",
+          "date": "2024-05-10",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹299",
+          "date": "2024-07-25",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹799",
+          "date": "2024-11-15",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹209",
+          "date": "2025-01-20",
+          "paymentMethod": "UPI"
+        }
+      ]
+    },
+    {
+      "name": "Neha",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹26",
+          "date": "2024-02-20",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹49",
+          "date": "2024-04-05",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹349",
+          "date": "2024-07-01",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹649",
+          "date": "2024-09-10",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹399",
+          "date": "2025-01-12",
+          "paymentMethod": "UPI"
+        }
+      ]
+    },
+    {
+      "name": "Pooja",
+      "history": [
+        {
+          "category": "Validity Plans",
+          "price": "₹209",
+          "date": "2024-03-12",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹45",
+          "date": "2024-05-18",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹98",
+          "date": "2024-07-22",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹579",
+          "date": "2024-10-08",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹399",
+          "date": "2025-01-03",
+          "paymentMethod": "Credit Card"
+        }
+      ]
+    },
+    {
+      "name": "Ravi",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹33",
+          "date": "2024-02-15",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹121",
+          "date": "2024-05-30",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹299",
+          "date": "2024-08-12",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹749",
+          "date": "2024-11-01",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹209",
+          "date": "2025-01-15",
+          "paymentMethod": "UPI"
+        }
+      ]
+    },
+    {
+      "name": "Sneha",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹26",
+          "date": "2024-04-12",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹98",
+          "date": "2024-06-18",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹349",
+          "date": "2024-09-30",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹619",
+          "date": "2024-11-20",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹399",
+          "date": "2025-01-10",
+          "paymentMethod": "UPI"
+        }
+      ]
+    },
+    {
+      "name": "Arjun",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹85",
+          "date": "2024-02-05",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹49",
+          "date": "2024-04-22",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹349",
+          "date": "2024-07-05",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹689",
+          "date": "2024-09-15",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹299",
+          "date": "2025-01-12",
+          "paymentMethod": "Debit Card"
+        }
+      ]
+    },
+    {
+      "name": "Varun",
+      "history": [
+        {
+          "category": "Data Plans",
+          "price": "₹26",
+          "date": "2024-03-01",
+          "paymentMethod": "Credit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹121",
+          "date": "2024-05-05",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹399",
+          "date": "2024-08-01",
+          "paymentMethod": "UPI"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹749",
+          "date": "2024-10-25",
+          "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Validity Plans",
+          "price": "₹209",
+          "date": "2025-01-07",
+          "paymentMethod": "Credit Card"
+        }
+      ]
+    }
+  ]
+}
