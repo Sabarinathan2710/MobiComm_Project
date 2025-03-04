@@ -129,6 +129,19 @@
             animation: popOut 0.5s ease;
         }
 
+        .error-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: #e74c3c;
+            animation: popOut 0.5s ease;
+        }
+
         @keyframes popOut {
             0% {
                 transform: scale(0);
@@ -224,7 +237,8 @@
         <div class="card">
             <div class="card-header">Selected Plan</div>
             <div class="card-body">
-                <h5 class="card-title" id="planTitle">Special title treatment</h5>
+                <h5 class="card-title" id="mobileNumber"></h5>
+                <h5 class="card-title mb-3" id="planTitle">Special title treatment</h5>
                 <h6 class="card-subtitle mb-2 text-muted" id="planValidity">Special title treatment</h6>
                 <p class="card-text" id="planDescription">With supporting text below as a natural lead-in to additional content.</p>
                 <p class="card-text" id="additionalBenefits"></p>
@@ -236,7 +250,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne">
-                        Credit Card
+                        <i class="fas fa-credit-card"></i> Credit Card
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -254,7 +268,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo">
-                        Debit Card
+                        <i class="fas fa-credit-card"></i>Debit Card
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -272,7 +286,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree">
-                        UPI
+                        <i class="fas fa-wallet"></i>UPI
                     </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -291,12 +305,12 @@
     </div>
 
     <!-- Success Modal -->
-    <div id="successModal" class="modal" style="display: none;">
+    <div id="successModal" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <div class="tick-icon">
+            <!-- <span class="close-button">&times;</span> -->
+            <span class="tick-icon">
                 <i class="fas fa-check-circle"></i>
-            </div>
+            </span>
             <p class="success-message">Payment Successful!</p>
             <button id="goHomeButton" class="btn btn-primary">Go to Home</button>
         </div>
@@ -340,11 +354,14 @@
         const planValidity = localStorage.getItem('planValidity');
         const additionalBenefits = localStorage.getItem('additionalBenefits');
 
+        const user = JSON.parse(localStorage.getItem('user'));
         // Update the payment page with the plan details
-        document.getElementById('planTitle').textContent = planTitle ? planTitle : 'No plan selected';       
+        document.getElementById('planTitle').textContent = planTitle ? `Plan Amount: ${planTitle}` : 'No plan selected';       
         document.getElementById('planValidity').textContent = planValidity ? planValidity : 'No validity available';
         document.getElementById('planDescription').textContent = planDescription ? planDescription : 'No description available';
         document.getElementById('additionalBenefits').textContent = additionalBenefits ? additionalBenefits : 'No additional benefits available';
+        document.getElementById('mobileNumber').textContent = user && user.mobileNumber ? `Mobile No : ${user.mobileNumber}` : 'No mobile number defined';
+        
 
         document.getElementById('creditCardPay').addEventListener('click', function(event) {
         const cardNumber = document.getElementById('creditCardNumber').value.trim();
@@ -366,7 +383,7 @@
                 storePaymentDetails('Credit Card');
                 hideLoadingSpinner(); // Hide the spinner
                 showSuccessModal(); // Show the success modal
-            }, 3000);
+            }, 2000);
         }
     });
 
@@ -390,7 +407,7 @@
                 storePaymentDetails('Debit Card');
                 hideLoadingSpinner(); // Hide the spinner
                 showSuccessModal(); // Show the success modal
-        }, 3000);
+            }, 2000);
         }
     });
 
@@ -406,7 +423,7 @@
                 storePaymentDetails('UPI');
                 hideLoadingSpinner(); // Hide the spinner
                 showSuccessModal(); // Show the success modal
-        }, 3000); 
+        }, 2000); 
         }
     });
 
@@ -449,17 +466,18 @@
     
     function showSuccessModal() {
     const modal = document.getElementById('successModal');
-    modal.style.display = 'flex'; // Show the modal
+    modal.classList.add('show'); // Show the modal
     
     // Close the modal on clicking the close button
-    document.querySelector('.close-button').addEventListener('click', () => {
-        modal.style.display = 'none'; // Hide the modal
-    });
+    // document.querySelector('.close-button').addEventListener('click', () => {
+    //     modal.classList.remove('show');// Hide the modal
+    // });
+
 
     // Close the modal on clicking outside the modal content
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
-            modal.style.display = 'none'; // Hide the modal
+            modal.classList.remove('show'); // Hide the modal
         }
     });
 

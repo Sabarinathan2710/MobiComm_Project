@@ -183,6 +183,10 @@
               <label for="planAdditionalBenefits" class="form-label">Additional Benefits</label>
               <textarea class="form-control" id="planAdditionalBenefits" required></textarea>
             </div>
+            <div class="mb-3">
+              <label for="planBatch" class="form-label">Batch</label>
+              <textarea class="form-control" id="planBatch"></textarea>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -257,6 +261,7 @@
       document.getElementById("planValidity").value = plan.validity;
       document.getElementById("planBenefits").value = plan.benefits;
       document.getElementById("planAdditionalBenefits").value = plan.additionalBenefits;
+      document.getElementById("planBatch").value = plan.Batch;
       new bootstrap.Modal(document.getElementById("addPlanModal")).show();
     }
 
@@ -274,7 +279,8 @@
         price: document.getElementById("planPrice").value,
         validity: document.getElementById("planValidity").value,
         benefits: document.getElementById("planBenefits").value,
-        additionalBenefits : document.getElementById("planAdditionalBenefits").value
+        additionalBenefits : document.getElementById("planAdditionalBenefits").value,
+        batch:document.getElementById("planBatch").value
       };
 
       try {

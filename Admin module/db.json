@@ -7,7 +7,7 @@
       "validity": "56 Days",
       "benefits": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
       "additionalBenefits": "Free JioHotstar OTT subscription for 1 Month",
-      "batch":"Recommended"
+      "batch": "Recommended"
     },
     {
       "id": "2",
@@ -15,7 +15,8 @@
       "price": 619,
       "validity": "60 Days",
       "benefits": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
-      "additionalBenefits": "Free Zee5 OTT subscription for 1 Month"
+      "additionalBenefits": "Free Zee5 OTT subscription for 1 Month",
+      "batch": "Most popular"
     },
     {
       "id": "3",
@@ -31,7 +32,8 @@
       "price": 689,
       "validity": "60 Days",
       "benefits": "Unlimited calls, 2GB Data/Day, 100 SMS/Day",
-      "additionalBenefits": "Free Netflix OTT subscription for 1 Month"
+      "additionalBenefits": "Free Netflix OTT subscription for 1 Month",
+      "batch": "Value for money"
     },
     {
       "id": "5",
@@ -51,14 +53,24 @@
     },
     {
       "id": "7",
-      "category": "Validity Plans",
-      "price": 209,
-      "validity": "28 Days",
-      "benefits": "Unlimited calls, 1GB Data/Day, 100 SMS/Day",
-      "additionalBenefits": "1GB Additional data excluding plans data"
+      "category": "Popular Plans",
+      "price": 838,
+      "validity": "56 Days",
+      "benefits": "Unlimited calls, 3GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "Free Amazon Prime OTT subscription for 2 Months",
+      "batch": "Limitless"
     },
     {
       "id": "8",
+      "category": "Popular Plans",
+      "price": 889,
+      "validity": "60 Days",
+      "benefits": "Unlimited calls, 3GB Data/Day, 100 SMS/Day",
+      "additionalBenefits": "Free Amazon Prime OTT subscription for 2 Months",
+      "batch": "best buy"
+    },
+    {
+      "id": "9",
       "category": "Validity Plans",
       "price": 249,
       "validity": "28 Days",
@@ -66,23 +78,25 @@
       "additionalBenefits": "2GB Additional data excluding plans data"
     },
     {
-      "id": "9",
+      "id": "10",
       "category": "Validity Plans",
       "price": 299,
       "validity": "28 Days",
       "benefits": "Unlimited calls, 2GB Data/Day, 100 SMS/Day",
-      "additionalBenefits": "3GB Additional data excluding plans data"
+      "additionalBenefits": "3GB Additional data excluding plans data",
+      "batch": "Stay Connected"
     },
     {
-      "id": "10",
+      "id": "11",
       "category": "Validity Plans",
       "price": 349,
       "validity": "28 Days",
       "benefits": "Unlimited calls, 2.5GB Data/Day, 100 SMS/Day",
-      "additionalBenefits": "4GB Additional data excluding plans data"
+      "additionalBenefits": "4GB Additional data excluding plans data",
+      "batch": "On-the-go"
     },
     {
-      "id": "11",
+      "id": "12",
       "category": "Validity Plans",
       "price": 399,
       "validity": "28 Days",
@@ -90,87 +104,91 @@
       "additionalBenefits": "5GB Additional data excluding plans data"
     },
     {
-      "id": "12",
-      "category": "Data Plans",
-      "price": 26,
-      "validity": "1 Day",
-      "benefits": "1.5GB Data for One Day",
-      "additionalBenefits": "500 MB free data"
-    },
-    {
       "id": "13",
       "category": "Data Plans",
-      "price": 50,
-      "validity": "2 Days",
-      "benefits": "1.5GB/day Data for Two Days",
+      "price": "26",
+      "validity": "1 Day",
+      "benefits": "1.5GB Data for 1 Day",
       "additionalBenefits": "500 MB free data"
     },
     {
       "id": "14",
       "category": "Data Plans",
-      "price": 33,
-      "validity": "1 Day",
-      "benefits": "2GB Data for One Day",
-      "additionalBenefits": "1GB free data"
+      "price": "50",
+      "validity": "2 Days",
+      "benefits": "1.5GB/day Data for 2 Days",
+      "additionalBenefits": "500 MB free data"
     },
     {
       "id": "15",
       "category": "Data Plans",
-      "price": 65,
-      "validity": "2 Days",
-      "benefits": "2GB Data/day for Two Days",
+      "price": "33",
+      "validity": "1 Day",
+      "benefits": "2GB Data for 1 Day",
       "additionalBenefits": "1GB free data"
     },
     {
       "id": "16",
       "category": "Data Plans",
-      "price": 45,
-      "validity": "1 Day",
-      "benefits": "2.5GB Data for One Day",
+      "price": "65",
+      "validity": "2 Days",
+      "benefits": "2GB Data/day for 2 Days",
       "additionalBenefits": "1GB free data"
     },
     {
       "id": "17",
       "category": "Data Plans",
-      "price": 85,
-      "validity": "2 Days",
-      "benefits": "2.5GB/day Data for Two Days",
+      "price": "45",
+      "validity": "1 Day",
+      "benefits": "2.5GB Data for 1 Day",
       "additionalBenefits": "1GB free data"
     },
     {
       "id": "18",
-      "category": "Unlimited Data Plans",
-      "price": 11,
-      "validity": "1 Hour",
-      "benefits": "Unlimited Data for Only One Hour",
-      "additionalBenefits": "Calls for 20 Minutes"
+      "category": "Data Plans",
+      "price": "85",
+      "validity": "2 Days",
+      "benefits": "2.5GB/day Data for 2 Days",
+      "additionalBenefits": "1GB free data"
     },
     {
       "id": "19",
       "category": "Unlimited Data Plans",
-      "price": 49,
-      "validity": "1 Day",
-      "benefits": "Unlimited Data for Only One Day",
-      "additionalBenefits": "Calls for 100 Minutes"
+      "price": 11,
+      "validity": "1 Hour",
+      "benefits": "Unlimited Data for Only One Hour",
+      "additionalBenefits": "Calls for 20 Minutes",
+      "batch": "Hour hero"
     },
     {
       "id": "20",
       "category": "Unlimited Data Plans",
-      "price": 98,
-      "validity": "2 Days",
-      "benefits": "Unlimited Data for Only Two Days",
-      "additionalBenefits": "Calls for 200 Minutes"
+      "price": 49,
+      "validity": "1 Day",
+      "benefits": "Unlimited Data for Only One Day",
+      "additionalBenefits": "Calls for 100 Minutes",
+      "batch": "go unlimited"
     },
     {
       "id": "21",
       "category": "Unlimited Data Plans",
-      "price": 121,
-      "validity": "3 Days",
-      "benefits": "Unlimited Data for Only Three Days",
-      "additionalBenefits": "Calls for 300 Minutes"
+      "price": 98,
+      "validity": "2 Days",
+      "benefits": "Unlimited Data for Only Two Days",
+      "additionalBenefits": "Calls for 200 Minutes",
+      "batch": "big value-small cost"
     },
     {
       "id": "22",
+      "category": "Unlimited Data Plans",
+      "price": 121,
+      "validity": "3 Days",
+      "benefits": "Unlimited Data for Only Three Days",
+      "additionalBenefits": "Calls for 300 Minutes",
+      "batch": "Fun unlimited"
+    },
+    {
+      "id": "23",
       "category": "Unlimited Data Plans",
       "price": 149,
       "validity": "4 Days",
@@ -178,89 +196,121 @@
       "additionalBenefits": "Calls for 400 Minutes"
     },
     {
-      "id": "23",
+      "id": "24",
       "category": "Validity Plans",
       "price": "199",
       "validity": "28 Days",
       "benefits": "Unlimited Calls, 2GB Data, 900 SMS",
       "additionalBenefits": "Free Caller Tunes for 28 Days"
+    },
+    {
+      "id": "25",
+      "category": "Validity Plans",
+      "price": "249",
+      "validity": "30 Days",
+      "benefits": "Unlimited Calls, 3GB Data, 900 SMS",
+      "additionalBenefits": "Free Caller Tunes for 30 Days"
+    },
+    {
+      "id": "26",
+      "category": "Validity Plans",
+      "price": "1999",
+      "validity": "365 Days",
+      "benefits": "Unlimited Calls, 50GB Data, 3500 SMS",
+      "additionalBenefits": "Free JioHotstar and Netflix Subscription for 3 Months",
+      "batch": "One Pay, Enjoy Year fully"
     }
   ],
   "users": [
     {
       "name": "Rajesh",
       "mobileNumber": "9876543210",
-      "email": "rajesh@example.com"
+      "email": "rajesh@example.com",
+      "id": "e4a3"
     },
     {
       "name": "Vikram",
       "mobileNumber": "9123456789",
-      "email": "vikram@example.com"
+      "email": "vikram@example.com",
+      "id": "355f"
     },
     {
       "name": "Amit",
       "mobileNumber": "9876501234",
-      "email": "amit@example.com"
+      "email": "amit@example.com",
+      "id": "692f"
     },
     {
       "name": "Anjali",
       "mobileNumber": "9001234567",
-      "email": "anjali@example.com"
+      "email": "anjali@example.com",
+      "id": "6c1f"
     },
     {
       "name": "Karthik",
       "mobileNumber": "9812345678",
-      "email": "karthik@example.com"
+      "email": "karthik@example.com",
+      "id": "73d4"
     },
     {
       "name": "Priya",
       "mobileNumber": "9123456789",
-      "email": "priya@example.com"
+      "email": "priya@example.com",
+      "id": "6022"
     },
     {
       "name": "Vijay",
       "mobileNumber": "9887654321",
-      "email": "vijay@example.com"
+      "email": "vijay@example.com",
+      "id": "49e2"
     },
     {
       "name": "Deepa",
       "mobileNumber": "9134567890",
-      "email": "deepa@example.com"
+      "email": "deepa@example.com",
+      "id": "96ec"
     },
     {
       "name": "Rahul",
       "mobileNumber": "9256347890",
-      "email": "rahul@example.com"
+      "email": "rahul@example.com",
+      "id": "dd0d"
     },
     {
       "name": "Neha",
       "mobileNumber": "9298765432",
-      "email": "neha@example.com"
+      "email": "neha@example.com",
+      "id": "a101"
     },
     {
       "name": "Pooja",
       "mobileNumber": "9265432109",
-      "email": "pooja@example.com"
+      "email": "pooja@example.com",
+      "id": "5b36"
     },
     {
       "name": "Ravi",
       "mobileNumber": "9876543210",
-      "email": "ravi@example.com"
+      "email": "ravi@example.com",
+      "id": "f060"
     },
     {
       "name": "Sneha",
       "mobileNumber": "9345678901",
-      "email": "sneha@example.com"
+      "email": "sneha@example.com",
+      "id": "65ff"
     },
     {
       "name": "Arjun",
       "mobileNumber": "9367812345",
-      "email": "arjun@example.com"
+      "email": "arjun@example.com",
+      "id": "e93d"
     },
     {
       "name": "Varun",
       "mobileNumber": "9487654321",
-      "email": "varun@example.com"
+      "email": "varun@example.com",
+      "id": "ee4f"
     }
   ],
   "usersHistory": [
@@ -297,7 +347,8 @@
           "date": "2024-12-28",
           "paymentMethod": "Credit Card"
         }
-      ]
+      ],
+      "id": "48b0"
     },
     {
       "name": "Vikram",
@@ -332,7 +383,8 @@
           "date": "2025-01-25",
           "paymentMethod": "Debit Card"
         }
-      ]
+      ],
+      "id": "4719"
     },
     {
       "name": "Amit",
@@ -367,7 +419,8 @@
           "date": "2025-01-30",
           "paymentMethod": "UPI"
         }
-      ]
+      ],
+      "id": "5858"
     },
     {
       "name": "Anjali",
@@ -402,7 +455,8 @@
           "date": "2025-02-01",
           "paymentMethod": "Credit Card"
         }
-      ]
+      ],
+      "id": "a1af"
     },
     {
       "name": "Karthik",
@@ -437,7 +491,8 @@
           "date": "2025-01-15",
           "paymentMethod": "Credit Card"
         }
-      ]
+      ],
+      "id": "1e6a"
     },
     {
       "name": "Priya",
@@ -472,7 +527,8 @@
           "date": "2025-01-01",
           "paymentMethod": "Credit Card"
         }
-      ]
+      ],
+      "id": "7604"
     },
     {
       "name": "Vijay",
@@ -507,7 +563,8 @@
           "date": "2025-01-10",
           "paymentMethod": "UPI"
         }
-      ]
+      ],
+      "id": "af54"
     },
     {
       "name": "Deepa",
@@ -542,7 +599,8 @@
           "date": "2025-01-05",
           "paymentMethod": "UPI"
         }
-      ]
+      ],
+      "id": "929d"
     },
     {
       "name": "Rahul",
@@ -577,7 +635,8 @@
           "date": "2025-01-20",
           "paymentMethod": "UPI"
         }
-      ]
+      ],
+      "id": "e2ef"
     },
     {
       "name": "Neha",
@@ -612,7 +671,8 @@
           "date": "2025-01-12",
           "paymentMethod": "UPI"
         }
-      ]
+      ],
+      "id": "0066"
     },
     {
       "name": "Pooja",
@@ -647,7 +707,8 @@
           "date": "2025-01-03",
           "paymentMethod": "Credit Card"
         }
-      ]
+      ],
+      "id": "0c82"
     },
     {
       "name": "Ravi",
@@ -682,7 +743,8 @@
           "date": "2025-01-15",
           "paymentMethod": "UPI"
         }
-      ]
+      ],
+      "id": "cba7"
     },
     {
       "name": "Sneha",
@@ -717,7 +779,8 @@
           "date": "2025-01-10",
           "paymentMethod": "UPI"
         }
-      ]
+      ],
+      "id": "57b1"
     },
     {
       "name": "Arjun",
@@ -752,7 +815,8 @@
           "date": "2025-01-12",
           "paymentMethod": "Debit Card"
         }
-      ]
+      ],
+      "id": "0d9a"
     },
     {
       "name": "Varun",
@@ -787,7 +851,8 @@
           "date": "2025-01-07",
           "paymentMethod": "Credit Card"
         }
-      ]
+      ],
+      "id": "2ce5"
     }
   ]
 }
