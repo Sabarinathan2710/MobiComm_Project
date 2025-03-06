@@ -21,10 +21,11 @@
     {
       "id": "3",
       "category": "Popular Plans",
-      "price": 649,
+      "price": "649",
       "validity": "56 Days",
       "benefits": "Unlimited calls, 2GB Data/Day, 100 SMS/Day",
-      "additionalBenefits": "Free Amazon Prime OTT subscription for 1 Month"
+      "additionalBenefits": "Free Amazon Prime OTT subscription for 1 Month",
+      "batch": "Top Rated"
     },
     {
       "id": "4",
@@ -109,7 +110,8 @@
       "price": "26",
       "validity": "1 Day",
       "benefits": "1.5GB Data for 1 Day",
-      "additionalBenefits": "500 MB free data"
+      "additionalBenefits": "500 MB free data",
+      "batch": "One Day Hero"
     },
     {
       "id": "14",
@@ -117,7 +119,8 @@
       "price": "50",
       "validity": "2 Days",
       "benefits": "1.5GB/day Data for 2 Days",
-      "additionalBenefits": "500 MB free data"
+      "additionalBenefits": "500 MB free data",
+      "batch": "Money Saver"
     },
     {
       "id": "15",
@@ -125,7 +128,8 @@
       "price": "33",
       "validity": "1 Day",
       "benefits": "2GB Data for 1 Day",
-      "additionalBenefits": "1GB free data"
+      "additionalBenefits": "1GB free data",
+      "batch": "Extra Enjoy"
     },
     {
       "id": "16",
@@ -853,6 +857,26 @@
         }
       ],
       "id": "2ce5"
+    },
+    {
+      "id": "ca9f",
+      "planTitle": "₹579",
+      "planDescription": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
+      "planValidity": "Validity: 56 Days",
+      "additionalBenefits": "Additional Benefits: Free JioHotstar OTT subscription for 1 Month",
+      "paymentMethod": "UPI",
+      "paymentDate": "3/6/2025",
+      "paymentTime": "11:00:37 PM"
+    },
+    {
+      "id": "1b44",
+      "planTitle": "₹579",
+      "planDescription": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
+      "planValidity": "Validity: 56 Days",
+      "additionalBenefits": "Additional Benefits: Free JioHotstar OTT subscription for 1 Month",
+      "paymentMethod": "UPI",
+      "paymentDate": "3/6/2025",
+      "paymentTime": "11:01:30 PM"
     }
   ]
 }
