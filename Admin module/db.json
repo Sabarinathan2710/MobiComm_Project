@@ -350,6 +350,16 @@
           "price": "₹619",
           "date": "2024-12-28",
           "paymentMethod": "Credit Card"
+        },
+        {
+          "Category": "Popular Plans",
+          "Price": "₹838",
+          "Validity": "Validity: 56 Days",
+          "planDetails": "Unlimited calls, 3GB Data/Day, 100 SMS/Day",
+          "additionalBenefits": "Additional Benefits: Free Amazon Prime OTT subscription for 2 Months",
+          "paymentMethod": "UPI",
+          "paymentDate": "3/7/2025",
+          "paymentTime": "11:20:40 PM"
         }
       ],
       "id": "48b0"

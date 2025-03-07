@@ -6,9 +6,9 @@
     <title>Payment Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Corrected Font Awesome Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Existing CSS styles remain unchanged */
         :root {
             --primary-color: #2A5C82;
             --primary-hover: #1E4560;
@@ -307,7 +307,6 @@
     <!-- Success Modal -->
     <div id="successModal" class="modal">
         <div class="modal-content">
-            <!-- <span class="close-button">&times;</span> -->
             <span class="tick-icon">
                 <i class="fas fa-check-circle"></i>
             </span>
@@ -353,6 +352,7 @@
         const planDescription = localStorage.getItem('planDescription');
         const planValidity = localStorage.getItem('planValidity');
         const additionalBenefits = localStorage.getItem('additionalBenefits');
+        const category = localStorage.getItem('planCategory');
 
         const user = JSON.parse(localStorage.getItem('user'));
         // Update the payment page with the plan details
@@ -362,131 +362,166 @@
         document.getElementById('additionalBenefits').textContent = additionalBenefits ? additionalBenefits : 'No additional benefits available';
         document.getElementById('mobileNumber').textContent = user && user.mobileNumber ? `Mobile No : ${user.mobileNumber}` : 'No mobile number defined';
         
-
         document.getElementById('creditCardPay').addEventListener('click', function(event) {
-        const cardNumber = document.getElementById('creditCardNumber').value.trim();
-        const expiry = document.getElementById('creditCardExpiry').value.trim();
-        const cvv = document.getElementById('creditCardCVV').value.trim();
+            const cardNumber = document.getElementById('creditCardNumber').value.trim();
+            const expiry = document.getElementById('creditCardExpiry').value.trim();
+            const cvv = document.getElementById('creditCardCVV').value.trim();
 
-        // Validate the card number (16 digits)
-        const cardNumberRegex = /^\d{16}$/;
+            // Validate the card number (16 digits)
+            const cardNumberRegex = /^\d{16}$/;
 
-        if (!cardNumber || !expiry || !cvv) {
-            alert('Please fill in all Credit Card details before proceeding.');
-            event.preventDefault();
-        } else if (!cardNumberRegex.test(cardNumber)) {
-            alert('Credit Card Number must contain exactly 16 digits.');
-            event.preventDefault();
-        } else {
-            showLoadingSpinner(); // Show the spinner
-            setTimeout(() => {
-                storePaymentDetails('Credit Card');
-                hideLoadingSpinner(); // Hide the spinner
-                showSuccessModal(); // Show the success modal
-            }, 2000);
-        }
-    });
+            if (!cardNumber || !expiry || !cvv) {
+                alert('Please fill in all Credit Card details before proceeding.');
+                event.preventDefault();
+            } else if (!cardNumberRegex.test(cardNumber)) {
+                alert('Credit Card Number must contain exactly 16 digits.');
+                event.preventDefault();
+            } else {
+                showLoadingSpinner(); // Show the spinner
+                setTimeout(() => {
+                    storePaymentDetails('Credit Card');
+                    hideLoadingSpinner(); // Hide the spinner
+                    showSuccessModal(); // Show the success modal
+                }, 2000);
+            }
+        });
 
-    document.getElementById('debitCardPay').addEventListener('click', function(event) {
-        const cardNumber = document.getElementById('debitCardNumber').value.trim();
-        const expiry = document.getElementById('debitCardExpiry').value.trim();
-        const cvv = document.getElementById('debitCardCVV').value.trim();
+        document.getElementById('debitCardPay').addEventListener('click', function(event) {
+            const cardNumber = document.getElementById('debitCardNumber').value.trim();
+            const expiry = document.getElementById('debitCardExpiry').value.trim();
+            const cvv = document.getElementById('debitCardCVV').value.trim();
 
-        // Validate the card number (16 digits)
-        const cardNumberRegex = /^\d{16}$/;
+            // Validate the card number (16 digits)
+            const cardNumberRegex = /^\d{16}$/;
 
-        if (!cardNumber || !expiry || !cvv) {
-            alert('Please fill in all Debit Card details before proceeding.');
-            event.preventDefault();
-        } else if (!cardNumberRegex.test(cardNumber)) {
-            alert('Debit Card Number must contain exactly 16 digits.');
-            event.preventDefault();
-        } else {
-            showLoadingSpinner(); // Show the spinner
-            setTimeout(() => {
-                storePaymentDetails('Debit Card');
-                hideLoadingSpinner(); // Hide the spinner
-                showSuccessModal(); // Show the success modal
-            }, 2000);
-        }
-    });
+            if (!cardNumber || !expiry || !cvv) {
+                alert('Please fill in all Debit Card details before proceeding.');
+                event.preventDefault();
+            } else if (!cardNumberRegex.test(cardNumber)) {
+                alert('Debit Card Number must contain exactly 16 digits.');
+                event.preventDefault();
+            } else {
+                showLoadingSpinner(); // Show the spinner
+                setTimeout(() => {
+                    storePaymentDetails('Debit Card');
+                    hideLoadingSpinner(); // Hide the spinner
+                    showSuccessModal(); // Show the success modal
+                }, 2000);
+            }
+        });
 
-    document.getElementById('upiPay').addEventListener('click', function(event) {
-        const upiId = document.getElementById('upiId').value.trim();
+        document.getElementById('upiPay').addEventListener('click', function(event) {
+            const upiId = document.getElementById('upiId').value.trim();
 
-        if (!upiId) {
-            alert('Please enter your UPI ID before proceeding.');
-            event.preventDefault();
-        } else {
-            showLoadingSpinner(); // Show the spinner
-            setTimeout(() => {
-                storePaymentDetails('UPI');
-                hideLoadingSpinner(); // Hide the spinner
-                showSuccessModal(); // Show the success modal
-        }, 2000); 
-        }
-    });
+            if (!upiId) {
+                alert('Please enter your UPI ID before proceeding.');
+                event.preventDefault();
+            } else {
+                showLoadingSpinner(); // Show the spinner
+                setTimeout(() => {
+                    storePaymentDetails('UPI');
+                    hideLoadingSpinner(); // Hide the spinner
+                    showSuccessModal(); // Show the success modal
+                }, 2000); 
+            }
+        });
 
-            // Function to store payment details in localStorage
-            function storePaymentDetails(paymentMethod) {
+        // Function to store payment details in the user's history on the JSON server
+        function storePaymentDetails(paymentMethod) {
             const paymentDetails = {
-                planTitle: planTitle,
-                planDescription: planDescription,
-                planValidity: planValidity,
-                additionalBenefits: additionalBenefits,
+                Category: category, // Assuming planTitle is the category
+                Price: planTitle,
+                Validity: planValidity,
+                planDetails: planDescription, // Assuming planTitle contains the price
+                additionalBenefits : additionalBenefits,
                 paymentMethod: paymentMethod,
                 paymentDate: new Date().toLocaleDateString(),
                 paymentTime: new Date().toLocaleTimeString()
             };
 
-            // Retrieve existing payment history from localStorage
-            let paymentHistory = JSON.parse(localStorage.getItem('paymentHistory')) || [];
-            paymentHistory.push(paymentDetails);
+            const user = JSON.parse(localStorage.getItem('user'));
 
-            // Store updated payment history in localStorage
-            localStorage.setItem('paymentHistory', JSON.stringify(paymentHistory));
+            if (user) {
+                // Fetch the user's history from the JSON server
+                fetch(`http://localhost:3000/usersHistory?name=${user.name}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let userHistory = data[0]; // Assuming the first match is the correct user
+
+                        if (userHistory) {
+                            // Add the new payment details to the user's history
+                            userHistory.history.push(paymentDetails);
+
+                            // Update the user's history on the JSON server
+                            fetch(`http://localhost:3000/usersHistory/${userHistory.id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(userHistory)
+                            })
+                            .then(response => response.json())
+                            .then(updatedUserHistory => {
+                                console.log('Payment details added to user history:', updatedUserHistory);
+                            })
+                            .catch(error => {
+                                console.error('Error updating user history:', error);
+                            });
+                        } else {
+                            // If the user's history doesn't exist, create a new entry
+                            const newUserHistory = {
+                                name: user.name,
+                                history: [paymentDetails]
+                            };
+
+                            fetch('http://localhost:3000/usersHistory', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(newUserHistory)
+                            })
+                            .then(response => response.json())
+                            .then(newHistory => {
+                                console.log('New user history created:', newHistory);
+                            })
+                            .catch(error => {
+                                console.error('Error creating new user history:', error);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching user history:', error);
+                    });
+            } else {
+                console.error('User not found in localStorage');
+            }
         }
-
 
         function showLoadingSpinner() {
             const spinner = document.getElementById('loadingSpinner');
             spinner.style.display = 'flex'; // Show the spinner
         }
 
-        // Function to hide the loading spinner
         function hideLoadingSpinner() {
             const spinner = document.getElementById('loadingSpinner');
             spinner.style.display = 'none'; // Hide the spinner
         }    
 
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('show'); // Show the modal
 
-    // Show the success modal
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.classList.remove('show'); // Hide the modal
+                }
+            });
 
-
-    
-    function showSuccessModal() {
-    const modal = document.getElementById('successModal');
-    modal.classList.add('show'); // Show the modal
-    
-    // Close the modal on clicking the close button
-    // document.querySelector('.close-button').addEventListener('click', () => {
-    //     modal.classList.remove('show');// Hide the modal
-    // });
-
-
-    // Close the modal on clicking outside the modal content
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.classList.remove('show'); // Hide the modal
+            document.getElementById('goHomeButton').addEventListener('click', () => {
+                window.location.href = 'homepage.html'; // Redirect to homepage
+            });
         }
-    });
-
-    document.getElementById('goHomeButton').addEventListener('click', () => {
-        window.location.href = 'homepage.html'; // Redirect to homepage
-    });
-}
-
-
     </script>
 </body>
 </html>
