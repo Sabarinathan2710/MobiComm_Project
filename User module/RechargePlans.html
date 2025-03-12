@@ -296,9 +296,9 @@
                                 ${plan.batch ? `<span class="batch bg-success position-absolute top-0 start-0 rounded">${plan.batch}</span>` : ''}
                                 <div class="card-body mt-4">
                                     <h5 class="card-title plan-price">₹${plan.price}</h5>
-                                    <h6 class="card-title plan-validity">Validity: ${plan.validity}</h6>
+                                    <h6 class="card-title plan-validity">${plan.validity}</h6>
                                     <p class="card-text">${plan.benefits}</p>
-                                    <p class="card-text additional"><b>Additional Benefits: ${plan.additionalBenefits}</b></p>
+                                    <p class="card-text additional"><b>${plan.additionalBenefits}</b></p>
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#planModal">View Details</button>
                                 </div>
                             </div>
@@ -342,9 +342,9 @@
                 const card = event.target.closest('.card');
                 const cardBody = card.querySelector('.card-body');
                 const planPrice = cardBody.querySelector('.plan-price').textContent;
-                const planValidity = cardBody.querySelector('.plan-validity')?.textContent || 'No validity specified';
+                const planValidity = cardBody.querySelector('.plan-validity')?.textContent.replace('Validity: ', '').trim() || 'No validity specified';
                 const planDescription = cardBody.querySelector('.card-text').textContent;
-                const additionalBenefits = cardBody.querySelector('.additional').textContent || 'No additional benefits specified';
+                const additionalBenefits = cardBody.querySelector('.additional').textContent.replace('Additional Benefits: ', '') .trim() || 'No additional benefits specified';
 
                 // Get the category of the selected plan from the data-category attribute
                 const planCategory = card.getAttribute('data-category');
@@ -356,9 +356,9 @@
                 modalTitle.textContent = 'Recharge Details for ' + planPrice;
                 modalBody.innerHTML = `
                     <p><strong>Category: ${planCategory}</strong></p>
-                    <p>${planValidity}</p>
-                    <p>${planDescription}</p>
-                    <p>${additionalBenefits}</p>
+                    <p><b>Validity:</b> ${planValidity}</p>
+                    <p><b>Benefits:</b> ${planDescription}</p>
+                    <p><b>Additional Benefits:</b> ${additionalBenefits}</p>
                 `;
 
                 const confirmPaymentButton = modal.querySelector('#confirmPayment');

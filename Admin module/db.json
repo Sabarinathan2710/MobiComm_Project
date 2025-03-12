@@ -352,14 +352,34 @@
           "paymentMethod": "Credit Card"
         },
         {
-          "Category": "Popular Plans",
-          "Price": "₹838",
-          "Validity": "Validity: 56 Days",
+          "category": "Popular Plans",
+          "price": "₹838",
+          "validity": "56 Days",
           "planDetails": "Unlimited calls, 3GB Data/Day, 100 SMS/Day",
-          "additionalBenefits": "Additional Benefits: Free Amazon Prime OTT subscription for 2 Months",
+          "additionalBenefits": "Free Amazon Prime OTT subscription for 2 Months",
           "paymentMethod": "UPI",
-          "paymentDate": "3/7/2025",
+          "date": "2025-03-07",
           "paymentTime": "11:20:40 PM"
+        },
+        {
+          "category": "Popular Plans",
+          "price": "₹799",
+          "validity": "60 Days",
+          "planDetails": "Unlimited calls, 2.5GB Data/Day, 100 SMS/Day",
+          "additionalBenefits": "Free Netflix OTT subscription for 1 Month",
+          "paymentMethod": "UPI",
+          "date": "2025-03-10",
+          "paymentTime": "10:06:59 PM"
+        },
+        {
+          "category": "Data Plans",
+          "price": "₹26",
+          "validity": "1 Day",
+          "planDetails": "1.5GB Data for 1 Day",
+          "additionalBenefits": "500 MB free data",
+          "paymentMethod": "UPI",
+          "date": "2025-03-11",
+          "paymentTime": "8:32:26 PM"
         }
       ],
       "id": "48b0"
@@ -396,6 +416,27 @@
           "price": "₹349",
           "date": "2025-01-25",
           "paymentMethod": "Debit Card"
+        },
+        {
+          "category": "Unlimited Data Plans",
+          "price": "₹11",
+          "validity": "Validity: 1 Hour",
+          "planDetails": "Unlimited Data for Only One Hour",
+          "additionalBenefits": "Additional Benefits: Calls for 20 Minutes",
+          "paymentMethod": "UPI",
+          "date": "2025-03-10",
+          "paymentTime": "9:25:43 PM"
+        },
+        {
+          "TransactionID": "TXN966290924",
+          "category": "Unlimited Data Plans",
+          "price": "₹11",
+          "validity": "1 Hour",
+          "planDetails": "Unlimited Data for Only One Hour",
+          "additionalBenefits": "Calls for 20 Minutes",
+          "paymentMethod": "UPI",
+          "date": "2025-03-11",
+          "paymentTime": "10:03:13 PM"
         }
       ],
       "id": "4719"
@@ -867,26 +908,6 @@
         }
       ],
       "id": "2ce5"
-    },
-    {
-      "id": "ca9f",
-      "planTitle": "₹579",
-      "planDescription": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
-      "planValidity": "Validity: 56 Days",
-      "additionalBenefits": "Additional Benefits: Free JioHotstar OTT subscription for 1 Month",
-      "paymentMethod": "UPI",
-      "paymentDate": "3/6/2025",
-      "paymentTime": "11:00:37 PM"
-    },
-    {
-      "id": "1b44",
-      "planTitle": "₹579",
-      "planDescription": "Unlimited calls, 1.5GB Data/Day, 100 SMS/Day",
-      "planValidity": "Validity: 56 Days",
-      "additionalBenefits": "Additional Benefits: Free JioHotstar OTT subscription for 1 Month",
-      "paymentMethod": "UPI",
-      "paymentDate": "3/6/2025",
-      "paymentTime": "11:01:30 PM"
     }
   ]
 }

@@ -357,9 +357,9 @@
         const user = JSON.parse(localStorage.getItem('user'));
         // Update the payment page with the plan details
         document.getElementById('planTitle').textContent = planTitle ? `Plan Amount: ${planTitle}` : 'No plan selected';       
-        document.getElementById('planValidity').textContent = planValidity ? planValidity : 'No validity available';
-        document.getElementById('planDescription').textContent = planDescription ? planDescription : 'No description available';
-        document.getElementById('additionalBenefits').textContent = additionalBenefits ? additionalBenefits : 'No additional benefits available';
+        document.getElementById('planValidity').textContent = planValidity ? `Plan Validity: ${planValidity}` : 'No validity available';
+        document.getElementById('planDescription').textContent = planDescription ? `Benefits: ${planDescription} `: 'No description available';
+        document.getElementById('additionalBenefits').textContent = additionalBenefits ? `Additional Benefits: ${additionalBenefits}` : 'No additional benefits available';
         document.getElementById('mobileNumber').textContent = user && user.mobileNumber ? `Mobile No : ${user.mobileNumber}` : 'No mobile number defined';
         
         document.getElementById('creditCardPay').addEventListener('click', function(event) {
@@ -426,16 +426,24 @@
             }
         });
 
+        function generateTransactionID() {
+            const randomNumbers = Math.floor(100000000 + Math.random() * 900000000); // Generate 9 random digits
+            return `TXN${randomNumbers}`; // Prefix with "TXN"
+        }
+
+
         // Function to store payment details in the user's history on the JSON server
         function storePaymentDetails(paymentMethod) {
+            const transactionID = generateTransactionID(); // Generate transaction ID
             const paymentDetails = {
-                Category: category, // Assuming planTitle is the category
-                Price: planTitle,
-                Validity: planValidity,
-                planDetails: planDescription, // Assuming planTitle contains the price
+                TransactionID: transactionID,
+                category: category, 
+                price: planTitle,
+                validity: planValidity,
+                planDetails: planDescription,
                 additionalBenefits : additionalBenefits,
                 paymentMethod: paymentMethod,
-                paymentDate: new Date().toLocaleDateString(),
+                date: new Date().toISOString().split('T')[0],
                 paymentTime: new Date().toLocaleTimeString()
             };
 
@@ -519,6 +527,7 @@
             });
 
             document.getElementById('goHomeButton').addEventListener('click', () => {
+                event.preventDefault();
                 window.location.href = 'homepage.html'; // Redirect to homepage
             });
         }
