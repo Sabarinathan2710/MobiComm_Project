@@ -261,7 +261,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
-    const baseURL = "http://localhost:3000/plans";
+    const baseURL = "http://localhost:8091/plans";
 
     try {
         const response = await fetch(baseURL);
@@ -269,10 +269,10 @@
 
         // Map category names to tab-pane IDs
         const categories = {
-            "Popular Plans": "pills-Popular-Plans",
-            "Validity Plans": "pills-Validity-Plans",
-            "Data Plans": "pills-Data-Plans",
-            "Unlimited Data Plans": "pills-Unlimited-Data-Plans",
+            "POPULAR_PLAN": "pills-Popular-Plans",
+            "VALIDITY_PLAN": "pills-Validity-Plans",
+            "DATA_PLAN": "pills-Data-Plans",
+            "UNLIMITED_DATA_PLAN": "pills-Unlimited-Data-Plans",
         };
 
         // Group plans by category
@@ -293,11 +293,11 @@
                     ${plans.map(plan => `
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                             <div class="card plan-card" data-category="${plan.category}">
-                                ${plan.batch ? `<span class="batch bg-success position-absolute top-0 start-0 rounded">${plan.batch}</span>` : ''}
+                                ${plan.badge ? `<span class="batch bg-success position-absolute top-0 start-0 rounded">${plan.badge}</span>` : ''}
                                 <div class="card-body mt-4">
                                     <h5 class="card-title plan-price">₹${plan.price}</h5>
                                     <h6 class="card-title plan-validity">${plan.validity}</h6>
-                                    <p class="card-text">${plan.benefits}</p>
+                                    <p class="card-text">${[plan.calls, plan.data, plan.sms].filter(value => value !== "No Calls" && value !== "No SMS").join(', ')}</p>
                                     <p class="card-text additional"><b>${plan.additionalBenefits}</b></p>
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#planModal">View Details</button>
                                 </div>
