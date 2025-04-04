@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,11 +26,21 @@
 
         .navbar {
             background: linear-gradient(135deg, var(--primary-color), #1e40af);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1100;
         }
+
+        #toastContainer {
+            position: fixed;
+            top: 70px;
+            /* Adjust based on navbar height */
+            right: 20px;
+            z-index: 1000;
+            /* Ensure it's above other content but below the navbar */
+        }
+
 
         .nav-pills .nav-link.active {
             background: var(--secondary-color) !important;
@@ -63,14 +73,14 @@
         .card {
             border: none;
             border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             background: white;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
 
         .form-label {
@@ -128,11 +138,12 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="homepage.html">
                 <span class="fw-bold">MobiComm</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -180,7 +191,7 @@
 
                             <div class="mb-4">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" id="address" class="input-box" value="123 Main St, Springfield, IL, 62701" readonly>
+                                <input type="text" id="address" class="input-box" readonly>
                             </div>
                             <div class="mb-4">
                                 <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
@@ -222,97 +233,172 @@
         </div>
     </footer>
 
-    <script>
-        // Fetch user data from localStorage
-       // Fetch user data from localStorage
-const user = JSON.parse(localStorage.getItem('user'));
-
-// Debugging: Check the user object
-console.log(user);
-
-if (!user || !user.email) {
-    alert('No user data found or email is missing. Redirecting to login.');
-    window.location.href = 'login.html';
-} else {
-    document.querySelector('.profile-name').textContent = user.name;
-    document.getElementById('email').value = user.email;
-    document.getElementById('phone').value = user.mobileNumber;
-}
-
-const emailField = document.getElementById('email');
-const editEmailBtn = document.getElementById('editEmailBtn');
-const emailError = document.getElementById('email-error');
-let originalEmail = emailField.value;
-
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-editEmailBtn.addEventListener('click', async function () {
-    if (emailField.hasAttribute('readonly')) {
-        emailField.removeAttribute('readonly');
-        emailField.focus();
-        editEmailBtn.textContent = 'Save';
-        emailError.style.display = 'none';
-    } else {
-        const newEmail = emailField.value.trim();
-
-        if (!emailRegex.test(newEmail)) {
-            emailError.style.display = 'block';
-            return;
-        }
-
-        if (newEmail === originalEmail) {
-            alert('Please enter a different email address.');
-            return;
-        }
-
-        try {
-            // Fetch all users and find the matching user by email
-            const allUsersResponse = await fetch(`http://localhost:3000/users`);
-            const allUsers = await allUsersResponse.json();
-
-            const matchingUser = allUsers.find((u) => u.email === originalEmail);
-
-            if (!matchingUser) {
-                throw new Error('User not found in the database.');
-            }
-
-            // Prepare updated user object
-            const updatedUser = { ...matchingUser, email: newEmail };
-
-            // Update the user's email using PUT
-            const response = await fetch(`http://localhost:3000/users/${matchingUser.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedUser),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Server responded with status: ${response.status}`);
-            }
-
-            alert('Email updated successfully!');
-            emailField.setAttribute('readonly', true);
-            editEmailBtn.textContent = 'Edit';
-            originalEmail = newEmail;
-
-            // Update email in localStorage and UI
-            localStorage.setItem('user', JSON.stringify(updatedUser));
-        } catch (error) {
-            console.error('Error updating email:', error);
-            alert('Failed to update email.');
-        }
-    }
-});
-
-    function logout(){
-        window.location.href = "login.html";
-    }
-
-    </script>
+    <!-- Toast Container -->
+    <div id="toastContainer" aria-live="polite" aria-atomic="true">
+        <!-- Toasts will be dynamically added here -->
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to show Bootstrap Toasts
+        function showToast(message, type = "info") {
+            const toastContainer = document.getElementById("toastContainer");
+
+            const toastEl = document.createElement("div");
+            toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
+            toastEl.setAttribute("role", "alert");
+            toastEl.setAttribute("aria-live", "assertive");
+            toastEl.setAttribute("aria-atomic", "true");
+
+            toastEl.innerHTML = `
+    <div class="d-flex">
+      <div class="toast-body">
+        ${message}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  `;
+
+            toastContainer.appendChild(toastEl);
+
+            const toast = new bootstrap.Toast(toastEl, { autohide: true, delay: 3000 });
+            toast.show();
+        }
+
+
+
+        // Check if the user is authenticated (i.e., token exists)
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            // Redirect to login page if no token is found
+            showToast('Session expired. Please log in again.', 'danger');
+            window.location.href = 'login.html';
+        }
+
+        // Fetch user data from localStorage
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        // Debugging: Check the user object
+        console.log(user);
+
+        if (!user || !user.email) {
+            showToast('No user data found or email is missing. Redirecting to login.', 'danger');
+            window.location.href = 'login.html';
+        } else {
+            document.querySelector('.profile-name').textContent = user.name;
+            document.getElementById('email').value = user.email;
+            document.getElementById('phone').value = user.mobileNumber;
+            document.getElementById('address').value = user.address;
+        }
+
+        const emailField = document.getElementById('email');
+        const editEmailBtn = document.getElementById('editEmailBtn');
+        const emailError = document.getElementById('email-error');
+        let originalEmail = emailField.value;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        editEmailBtn.addEventListener('click', async function () {
+            if (emailField.hasAttribute('readonly')) {
+                emailField.removeAttribute('readonly');
+                emailField.focus();
+                editEmailBtn.textContent = 'Save';
+                emailError.style.display = 'none';
+            } else {
+                const newEmail = emailField.value.trim();
+
+                if (!emailRegex.test(newEmail)) {
+                    emailError.style.display = 'block';
+                    return;
+                }
+
+                if (newEmail === originalEmail) {
+                    showToast('Please enter a different email address.', 'warning');
+                    return;
+                }
+
+                try {
+                    // Fetch all users and find the matching user by email
+                    const allUsersResponse = await fetch(`http://localhost:8091/users`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}` // Add JWT token to the request
+                        }
+                    });
+                    const allUsers = await allUsersResponse.json();
+
+                    const matchingUser = allUsers.find((u) => u.email === originalEmail);
+
+                    if (!matchingUser) {
+                        throw new Error('User not found in the database.');
+                    }
+
+                    // Prepare updated user object
+                    const updatedUser = { ...matchingUser, email: newEmail };
+
+                    // Update the user's email using PUT
+                    const response = await fetch(`http://localhost:8091/users/${matchingUser.id}/email`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}` // Add JWT token to the request
+                        },
+                        body: JSON.stringify({ newEmail }),
+                    });
+
+                    if (!response.ok) {
+                        // Parse error details if available and throw an error
+                        const errorDetails = await response.json();
+                        throw new Error(errorDetails.message || `Server responded with status: ${response.status}`);
+                    }
+
+                    // Parse the updated user data from the backend
+                    const updatedUserResponse = await response.json();
+
+                    // Update localStorage and UI with the backend response
+                    localStorage.setItem('user', JSON.stringify(updatedUserResponse));
+                    emailField.value = updatedUserResponse.email; // Update the email field in the UI
+                    showToast('Email updated successfully!','success');
+                    emailField.setAttribute('readonly', true);
+                    editEmailBtn.textContent = 'Edit';
+                    originalEmail = updatedUserResponse.email;
+                } catch (error) {
+                    console.error('Error updating email:', error);
+                    showToast('Failed to update email.', 'danger');
+                }
+            }
+        });
+
+        // Function to send logout POST request
+        async function postLogout(userId) {
+            try {
+                const response = await fetch('http://localhost:8091/userLog/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` // Add JWT token to the request
+                    },
+                    body: JSON.stringify({ userId }) // Send userId in the request body
+                });
+                if (!response.ok) {
+                    throw new Error(`Failed to log out: ${response.statusText}`);
+                }
+                console.log(`Logout activity posted for user ID: ${userId}`);
+            } catch (error) {
+                console.error('Error posting logout activity:', error);
+            }
+        }
+
+        function logout() {
+            if (user && user.id) {
+                postLogout(user.id); // Send logout POST request
+            }
+            sessionStorage.removeItem('token'); // Clear the token
+            localStorage.removeItem('user'); // Clear the user data
+            showToast('Logged out successfully. Redirecting to login page...', 'info');
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
-

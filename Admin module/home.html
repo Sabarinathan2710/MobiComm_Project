@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
       font-family: 'Poppins', sans-serif;
       background-color: aliceblue;
     }
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -25,37 +27,45 @@
       color: white;
       padding-top: 20px;
     }
+
     .sidebar a {
       color: white;
       text-decoration: none;
       padding: 15px;
       display: block;
     }
+
     .sidebar a:hover {
       background-color: #575757;
     }
+
     .main-content {
       margin-left: 250px;
       padding: 20px;
     }
+
     .card {
       margin-bottom: 20px;
     }
+
     @media (max-width: 768px) {
       .sidebar {
         position: relative;
         width: 100%;
         height: auto;
       }
+
       .main-content {
         margin-left: 0;
       }
     }
+
     @media (max-width: 576px) {
       .table-responsive {
         overflow-x: auto;
       }
     }
+
     .chart-container {
       position: relative;
       height: 300px;
@@ -63,6 +73,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Sidebar -->
   <div class="sidebar">
@@ -80,13 +91,15 @@
         <div class="container-fluid">
           <span class="navbar-brand text-light">Prepaid Recharge Admin</span>
           <div class="d-flex">
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Admin
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                    <li><button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button></li>
-                </ul>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="adminDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Admin
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                <li><button class="dropdown-item text-danger" data-bs-toggle="modal"
+                    data-bs-target="#logoutModal">Logout</button></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -148,44 +161,46 @@
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
           <thead class="table-dark">
-              <tr>
-                  <th>Name</th>
-                  <th>Mobile Number</th>
-                  <th>Email ID</th>
-                  <th>Plan</th>
-                  <th>Date of Payment</th>
-                  <th>Payment Mode</th>
-                  <th>History</th>
-              </tr>
+            <tr>
+              <th>Username</th>
+              <th>Plan Name</th>
+              <th>Recharge Date</th>
+              <th>Expiry Date</th>
+              <th>Days to Expire</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody id="expiry-users">
-              <tr>
-                  <td>Rajesh</td>
-                  <td>9876543210</td>
-                  <td>rajesh@example.com</td>
-                  <td>Unlimited 499</td>
-                  <td>2025-02-01</td>
-                  <td>Credit Card</td>
-                  <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal" onclick="loadHistory('Rajesh')">History</button></td>
-              </tr>
-              <tr>
-                  <td>Vikram</td>
-                  <td>9123456789</td>
-                  <td>vikram@example.com</td>
-                  <td>Premium 799</td>
-                  <td>2025-01-20</td>
-                  <td>Net Banking</td>
-                  <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal" onclick="loadHistory('Vikram')">History</button></td>
-              </tr>
-              <tr>
-                <td>Amit</td>
-                <td>9876501234</td>
-                <td>amit@example.com</td>
-                <td>Basic 299</td>
-                <td>2025-01-10</td>
-                <td>Debit Card</td>
-                <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal" onclick="loadHistory('Amit')">History</button></td>
+            <!-- <tr>
+              <td>Rajesh</td>
+              <td>9876543210</td>
+              <td>rajesh@example.com</td>
+              <td>Unlimited 499</td>
+              <td>2025-02-01</td>
+              <td>Credit Card</td>
+              <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal"
+                  onclick="loadHistory('Rajesh')">History</button></td>
             </tr>
+            <tr>
+              <td>Vikram</td>
+              <td>9123456789</td>
+              <td>vikram@example.com</td>
+              <td>Premium 799</td>
+              <td>2025-01-20</td>
+              <td>Net Banking</td>
+              <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal"
+                  onclick="loadHistory('Vikram')">History</button></td>
+            </tr>
+            <tr>
+              <td>Amit</td>
+              <td>9876501234</td>
+              <td>amit@example.com</td>
+              <td>Basic 299</td>
+              <td>2025-01-10</td>
+              <td>Debit Card</td>
+              <td><button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal"
+                  onclick="loadHistory('Amit')">History</button></td>
+            </tr> -->
           </tbody>
         </table>
       </div>
@@ -220,160 +235,334 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p id="user-history"></p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Payment Method</th>
+              </tr>
+            </thead>
+            <tbody id="history-table-body">
+              <!-- History rows will be dynamically populated -->
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 
+  
+
   <!-- Bootstrap JS and Popper.js -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   <script>
-    // Sample data for charts
-    const revenueData = {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      datasets: [{
-        label: 'Revenue (₹)',
-        data: [5000, 7000, 8000, 10000, 12000, 15000],
-        borderColor: '#17a2b8',
-        backgroundColor: 'rgba(23, 162, 184, 0.2)',
-        borderWidth: 2
-      }]
-    };
-
-    const rechargeData = {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      datasets: [{
-        label: 'Recharges',
-        data: [100, 150, 200, 250, 300, 350],
-        borderColor: '#28a745',
-        backgroundColor: 'rgba(40, 167, 69, 0.2)',
-        borderWidth: 2
-      }]
-    };
-
-    // Create charts
-    const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
-    const revenueChart = new Chart(ctxRevenue, {
-      type: 'line',
-      data: revenueData,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'top'
-          },
-          tooltip: {
-            mode: 'index',
-            intersect: false
-          }
+    console.log("Script loaded"); // Debugging line
+  
+    // Fetch expiring plans data
+    async function fetchExpiringPlans() {
+      console.log("fetchExpiringPlans called"); // Debugging line
+      try {
+        const token = localStorage.getItem('adminToken');
+        console.log("Token:", token); // Debugging line
+        if (!token) {
+          alert('No token found. Redirecting to login...');
+          window.location.href = 'AdminLogin.html';
+          return;
         }
-      }
-    });
-
-    const ctxRecharge = document.getElementById('rechargeChart').getContext('2d');
-    const rechargeChart = new Chart(ctxRecharge, {
-      type: 'line',
-      data: rechargeData,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'top'
-          },
-          tooltip: {
-            mode: 'index',
-            intersect: false
+  
+        const response = await fetch('http://localhost:8091/admin/expiring-plans', {
+          headers: {
+            'Authorization': `Bearer ${token}`
           }
+        });
+  
+        console.log("Response status:", response.status); // Debugging line
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+  
+        const data = await response.json();
+        console.log("Fetched data:", data); // Debugging line
+        renderExpiringPlans(data);
+      } catch (error) {
+        console.error('Error fetching expiring plans:', error);
       }
-    });
+    }
+  
+    // Render expiring plans in the table
+    function renderExpiringPlans(data) {
+      console.log("Rendering expiring plans:", data); // Debugging line
+      const tableBody = document.getElementById('expiry-users');
+      tableBody.innerHTML = ''; // Clear existing rows
+  
+      data.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item[2]}</td> <!-- username -->
+          <td>${item[4]}</td> <!-- plan_name -->
+          <td>${item[5]}</td> <!-- recharge_date -->
+          <td>${item[6]}</td> <!-- expiry_date -->
+          <td>${item[7]}</td> <!-- days_to_expire -->
+          <td>
+            <button class="btn btn-success btn-sm" onclick="loadHistory(${item[1]})">History</button>
+            <button class="btn btn-warning btn-sm" onclick="notifyUser(${item[1]}, '${item[2]}', '${item[4]}', '${item[6]}')">Notify</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+  
+    // Load user history
+    async function loadHistory(userId) {
+      console.log("Loading history for user ID:", userId); // Debugging line
+      try {
+        const token = localStorage.getItem('adminToken');
+        const response = await fetch(`http://localhost:8091/admin/user-history`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+  
+        console.log("History response status:", response.status); // Debugging line
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+  
+        const history = await response.json();
+        console.log("Fetched history:", history); // Debugging line
+        renderHistoryModal(history, userId); // Pass userId to filter history
+      } catch (error) {
+        console.error('Error fetching user history:', error);
+      }
+    }
+  
+    // Render history in the modal
+    function renderHistoryModal(history, userId) {
+      console.log("Rendering history for user ID:", userId); // Debugging line
+      const historyTableBody = document.getElementById('history-table-body');
+      historyTableBody.innerHTML = ''; // Clear previous history
+  
+      // Filter history by userId
+      const userHistory = history.filter(entry => entry.user.id === userId); // Adjust this line based on the actual structure
+  
+      userHistory
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${entry.categoryName}</td>
+          <td>₹${entry.price}</td>
+          <td>${entry.date}</td>
+          <td>${entry.paymentDetails.paymentMethod}</td>
+        `;
+        historyTableBody.appendChild(row);
+      });
+  
+      // Show the modal
+      const historyModal = new bootstrap.Modal(document.getElementById('historyModal'));
+      historyModal.show();
+    }
 
-    // Sample function to simulate user history data
-    function loadHistory(userName) {
-      const history = {
-        "Rajesh": [
-          "Unlimited - ₹499 - 2025-01-01",
-          "Basic - ₹199 - 2025-01-12",
-          "Premium - ₹799 - 2024-12-15",
-          "Unlimited - ₹499 - 2024-11-30",
-          "Data - ₹249 - 2024-10-05"
-        ],
-        "Vikram": [
-          "Premium - ₹799 - 2025-01-20",
-          "Data - ₹299 - 2024-12-10",
-          "Unlimited - ₹699 - 2024-11-25",
-          "Basic - ₹199 - 2024-10-10",
-          "Premium - ₹799 - 2024-09-18"
-        ],
-        "Amit": [
-          "Premium - ₹799 - 2025-01-20",
-          "Data - ₹299 - 2024-12-10",
-          "Unlimited - ₹699 - 2024-11-25",
-          "Basic - ₹199 - 2024-10-10",
-          "Premium - ₹799 - 2024-09-18"
-        ]
+    // Notify user
+    async function notifyUser(userId, username, planName, expiryDate) {
+    try {
+        const token = localStorage.getItem('adminToken');
+        const response = await fetch(`http://localhost:8091/admin/notify-user/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.text();
+        alert(result); // Show success message
+    } catch (error) {
+        console.error('Error notifying user:', error);
+        alert('Failed to notify user: ' + error.message);
+    }
+}
+    
+    function logout() {
+        localStorage.removeItem('adminToken');
+        window.location.href = "AdminLogin.html";
+    }
+    // Initialize
+    console.log("Initializing..."); // Debugging line
+    fetchExpiringPlans();
+    async function initCharts() {
+    try {
+      const token = localStorage.getItem('adminToken');
+      if (!token) {
+        console.log('No token found for charts');
+        return;
+      }
+
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       };
 
-      const userHistory = history[userName] || [];
-      const historyElement = document.getElementById('user-history');
+      // Fetch data for all charts
+      const [revenueRes, plansRes, paymentsRes] = await Promise.all([
+        fetch('http://localhost:8091/admin/charts/revenue', config),
+        fetch('http://localhost:8091/admin/charts/plans', config),
+        fetch('http://localhost:8091/admin/charts/payments', config)
+      ]);
+
+      // Parse responses
+      const revenueData = await revenueRes.json();
+      const plansData = await plansRes.json();
+      const paymentsData = await paymentsRes.json();
+
+      const totalRevenue = Object.values(revenueData).reduce((sum, value) => sum + value, 0);
+      // Render charts
+      renderRevenueChart(totalRevenue);
+      renderPlanChart(plansData);
+      renderPaymentChart(paymentsData);
       
-      // Clear previous history
-      historyElement.innerHTML = `<strong>${userName} History:</strong>`;
+    } catch (error) {
+      console.error('Error loading chart data:', error);
+    }
+  }
 
-      // Create a table for the history entries
-      const table = document.createElement('table');
-      table.classList.add('table', 'table-striped', 'table-bordered');
-
-      // Add table headers
-      const tableHeader = document.createElement('thead');
-      const headerRow = document.createElement('tr');
-      const headers = ['Plan', 'Amount', 'Date'];
-
-      headers.forEach(header => {
-          const th = document.createElement('th');
-          th.textContent = header;
-          headerRow.appendChild(th);
-      });
-
-      tableHeader.appendChild(headerRow);
-      table.appendChild(tableHeader);
-
-      // Add table body
-      const tableBody = document.createElement('tbody');
-      
-      userHistory.forEach(entry => {
-          const row = document.createElement('tr');
-          const entryDetails = entry.split(' - ');
-
-          if (entryDetails.length === 3) {
-              const planCell = document.createElement('td');
-              planCell.textContent = entryDetails[0];
-              row.appendChild(planCell);
-
-              const amountCell = document.createElement('td');
-              amountCell.textContent = entryDetails[1];
-              row.appendChild(amountCell);
-
-              const dateCell = document.createElement('td');
-              dateCell.textContent = entryDetails[2];
-              row.appendChild(dateCell);
+  function renderRevenueChart(totalRevenue) {
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Total Revenue'],
+        datasets: [{
+          label: 'Overall Revenue',
+          data: [totalRevenue],
+          borderColor: '#4e73df',
+          backgroundColor: 'rgba(78, 115, 223, 0.05)',
+          tension: 0.3,
+          fill: true
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return '₹' + context.raw.toLocaleString();
+              }
+            }
           }
-          
-          tableBody.appendChild(row);
-      });
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return '₹' + value;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
 
-      table.appendChild(tableBody);
-      historyElement.appendChild(table);
-    }
+  function renderPlanChart(data) {
+    const ctx = document.getElementById('rechargeChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: Object.keys(data),
+        datasets: [{
+          data: Object.values(data),
+          backgroundColor: [
+            '#36b9cc',
+            '#1cc88a',
+            '#e74a3b',
+            '#f6c23e'
+          ],
+          hoverBackgroundColor: [
+            '#2c9faf',
+            '#17a673',
+            '#be2617',
+            '#dda20a'
+          ],
+          hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'right'
+          }
+        }
+      }
+    });
+  }
 
-    function logout() {
-      // Redirect to the login page
-      window.location.href = "AdminLogin.html"; // Replace with the actual login page URL
-    }
+  function renderPaymentChart(data) {
+    // Create a new canvas for the third chart
+    const container = document.querySelector('.row.mt-4');
+    const newCol = document.createElement('div');
+    newCol.className = 'col-md-6 mt-4';
+    newCol.innerHTML = `
+      <h4>Payment Methods</h4>
+      <div class="chart-container">
+        <canvas id="paymentsChart"></canvas>
+      </div>
+    `;
+    container.appendChild(newCol);
+    
+    const ctx = document.getElementById('paymentsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.map(item => item.method || 'Unknown'),
+        datasets: [{
+          label: 'Transactions Count',
+          data: data.map(item => item.transactions),
+          backgroundColor: '#1cc88a',
+          hoverBackgroundColor: '#17a673',
+          borderColor: "#dddfeb",
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1
+            }
+          }
+        }
+      }
+    });
+  }
+
+  // Initialize everything
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchExpiringPlans();
+    initCharts();
+  });
+
   </script>
 </body>
+
 </html>

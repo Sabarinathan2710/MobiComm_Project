@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +30,16 @@
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
+            z-index: 1100;
+        }
+
+        #toastContainer {
+            position: fixed;
+            top: 70px;
+            /* Adjust based on navbar height */
+            right: 20px;
             z-index: 1000;
+            /* Ensure it's above other content but below the navbar */
         }
 
 
@@ -94,11 +104,12 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="homepage.html">
                 <span class="fw-bold">MobiComm</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -106,9 +117,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="rechargeplans.html">Plans</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="hist.html">History</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="history.html">History</a></li>
                     <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
                 </ul>
             </div>
@@ -154,78 +165,140 @@
         </div>
     </footer>
 
+    <!-- Toast Container -->
+    <div id="toastContainer" aria-live="polite" aria-atomic="true">
+        <!-- Toasts will be dynamically added here -->
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Get the user's name from localStorage
-    // Get the user's name from localStorage
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userName = user ? user.name : null;
+        // Get the user's ID from localStorage
+        const user = JSON.parse(localStorage.getItem('user'));
+        const userId = user ? user.id : null;
 
-    // Get the container where history cards will be inserted
-    const historyContainer = document.getElementById('historyContainer');
+        // Get the container where history cards will be inserted
+        const historyContainer = document.getElementById('historyContainer');
 
-    // Function to create a history card
-    function createHistoryCard(payment) {
-        const card = document.createElement('div');
-        card.className = 'col';
-        card.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Recharge Plan : ${payment.category}</h5>
-                    <p class="card-text"><b>Plan Price :</b> ${payment.price}</p>
-                    <p class="card-text"><b>Plan Validity :</b> ${payment.validity}</p>
-                    <p class="card-text"><b>Plan Details :</b> ${payment.planDetails}</p>
-                    <p class="card-text"><b>Date :</b> ${payment.date}</p>
-                    <p class="card-text"><b>Payment Method :</b> ${payment.paymentMethod}</p>
-                </div>
+        // Function to validate JWT token
+        function validateToken() {
+            const token = sessionStorage.getItem('token');
+            if (!token) {
+                console.error('No token found. Redirecting to login page.');
+                showToast('Session expired. Please log in again.', 'danger');
+                sessionStorage.clear();
+                window.location.href = 'login.html';
+                return false;
+            }
+            return true;
+        }
+
+        // Function to create a history card
+        function createHistoryCard(payment) {
+            const card = document.createElement('div');
+            card.className = 'col';
+            const expiryDisplay = payment.expiryDate ? 
+        `<p class="card-text"><b>Expires on:</b> ${payment.expiryDate}</p>` : 
+        '';
+        const statusBadge = payment.expiryDate ?
+        (new Date(payment.expiryDate) > new Date() ? 
+            '<span class="badge bg-success ms-2">Active</span>' : 
+            '<span class="badge bg-danger ms-2">Expired</span>') : 
+        '';
+            card.innerHTML = `
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Recharge Plan: ${payment.categoryName} ${statusBadge}</h5>
+                <p class="card-text"><b>Plan Price:</b> ₹${payment.price}</p>
+                <p class="card-text"><b>Plan Validity:</b> ${payment.validity}</p>
+                                ${expiryDisplay}
+                <p class="card-text"><b>Plan Details:</b> ${payment.planDetails}</p>
+                <p class="card-text"><b>Additional Benefits:</b> ${payment.additionalBenefits}</p>
+                <p class="card-text"><b>Date:</b> ${payment.date}</p>
+                <p class="card-text"><b>Payment Method:</b> ${payment.paymentDetails.paymentMethod}</p>
             </div>
-        `;
-        return card;
-    }
+        </div>
+    `;
+            return card;
+        }
 
-    // Fetch user's history from the JSON server
-    if (userName) {
-        fetch(`http://localhost:3000/usersHistory?name=${userName}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log("Fetched user history:", data); // Log the fetched data
+        // Fetch user's history from the backend
+        if (userId) {
+            // Validate token before making the API call
+            if (!validateToken()) {
+                historyContainer.innerHTML = `<p class="text-center">User not logged in. Please log in to view recharge history.</p>`;
+            } else {
+                const token = sessionStorage.getItem('token');
+                fetch(`http://localhost:8091/user-history/user/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Add JWT token to the request
+                    }
+                })
+                    .then(response => {
+                        if (response.status === 401 || response.status === 403) {
+                            console.error('Authorization failed. Redirecting to login page.');
+                            showToast('Session expired. Please log in again.', 'danger');
+                            sessionStorage.clear();
+                            window.location.href = 'login.html';
+                            return;
+                        }
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch user history.');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Fetched user history:", data); // Log the fetched data
 
-                // Check if the user's history exists
-                if (data.length > 0) {
-                    // Clear the container before appending new cards
-                    historyContainer.innerHTML = '';
+                        data.sort((a, b) => new Date(b.date) - new Date(a.date));
+                        // Check if the user's history exists
+                        if (data.length > 0) {
+                            // Clear the container before appending new cards
+                            historyContainer.innerHTML = '';
 
-                    // Display all payment history cards
-                    data.forEach(user => {
-                        if (user.history && Array.isArray(user.history)) {
-                            user.history.forEach(payment => {
+                            // Display all payment history cards
+                            data.forEach(payment => {
                                 const card = createHistoryCard(payment);
                                 historyContainer.appendChild(card);
                             });
+                        } else {
+                            // Display a message if no history is found
+                            historyContainer.innerHTML = `<p class="text-center">No recharge history found for this user.</p>`;
                         }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching user history:", error);
+                        historyContainer.innerHTML = `<p class="text-center">Error loading recharge history. Please try again later.</p>`;
                     });
-                } else {
-                    // Display a message if no history is found
-                    historyContainer.innerHTML = `<p class="text-center">No recharge history found for ${userName}.</p>`;
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching user history:", error);
-                historyContainer.innerHTML = `<p class="text-center">Error loading recharge history. Please try again later.</p>`;
-            });
-    } else {
-        // Display a message if the user is not logged in
-        historyContainer.innerHTML = `<p class="text-center">User not logged in. Please log in to view recharge history.</p>`;
-    }
+            }
+        } else {
+            // Display a message if the user is not logged in
+            historyContainer.innerHTML = `<p class="text-center">User not logged in. Please log in to view recharge history.</p>`;
+        }
 
-    // Existing code to display payment history from localStorage
-    const paymentHistory = JSON.parse(localStorage.getItem('paymentHistory')) || [];
+        function showToast(message, type = "info") {
+            const toastContainer = document.getElementById("toastContainer");
 
-    // Display all payment history cards from localStorage
-    paymentHistory.forEach(payment => {
-        const card = createHistoryCard(payment);
-        historyContainer.appendChild(card);
-    });
+            const toastEl = document.createElement("div");
+            toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
+            toastEl.setAttribute("role", "alert");
+            toastEl.setAttribute("aria-live", "assertive");
+            toastEl.setAttribute("aria-atomic", "true");
+
+            toastEl.innerHTML = `
+    <div class="d-flex">
+      <div class="toast-body">
+        ${message}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  `;
+
+            toastContainer.appendChild(toastEl);
+
+            const toast = new bootstrap.Toast(toastEl, { autohide: true, delay: 3000 });
+            toast.show();
+        }
     </script>
 </body>
+
 </html>

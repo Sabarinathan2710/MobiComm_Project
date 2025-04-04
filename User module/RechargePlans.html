@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
     <title>Recharge Plans</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,11 +25,21 @@
 
         .navbar {
             background: linear-gradient(135deg, var(--primary-color), #1e40af);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1100;
         }
+
+        #toastContainer {
+            position: fixed;
+            top: 70px;
+            /* Adjust based on navbar height */
+            right: 20px;
+            z-index: 1000;
+            /* Ensure it's above other content but below the navbar */
+        }
+
 
         .nav-pills .nav-link.active {
             background: var(--secondary-color);
@@ -38,14 +49,14 @@
         .plan-card {
             border: none;
             border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             background: white;
         }
 
         .plan-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
 
         .plan-price {
@@ -73,14 +84,14 @@
             transform: translateY(-2px);
         }
 
-        .btn-primary{
+        .btn-primary {
             background-color: var(--secondary-color);
             border: none;
             padding: 0.75rem 2rem;
             font-weight: 500;
         }
 
-        .btn-primary:hover{
+        .btn-primary:hover {
             background: var(--primary-hover);
         }
 
@@ -122,15 +133,16 @@
             color: var(--secondary-color);
         }
 
-        .nav-item.active{
+        .nav-item.active {
             background: var(--secondary-color) !important;
             color: white !important;
             border-radius: 0.5rem;
         }
+
         .batch {
             font-size: 0.8rem;
             color: white;
-            font-family: 'Poppins',sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-weight: bold;
             padding: 0.4rem 0.6rem;
             text-transform: uppercase;
@@ -138,11 +150,12 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="homepage.html">
                 <span class="fw-bold">MobiComm</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -165,10 +178,11 @@
         <hr>
 
         <div class="mb-4">
-            <input type="text" id="filterInput" class="form-control" placeholder="Filter by amount or validity (e.g., 28)">
+            <input type="text" id="filterInput" class="form-control"
+                placeholder="Filter by amount or validity (e.g., 28)">
         </div>
         <!-- Plan Categories -->
-        <ul class="nav nav-pills mb-3 justify-content-center gap-2" id="pills-tab">
+        <!-- <ul class="nav nav-pills mb-3 justify-content-center gap-2" id="pills-tab">
             <li class="nav-item">
                 <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#pills-Popular-Plans">
                     <i class="fas fa-fire me-2"></i>Popular
@@ -189,20 +203,33 @@
                     <i class="fas fa-infinity me-2"></i>Unlimited
                 </button>
             </li>
+        </ul> -->
+        <ul class="nav nav-pills mb-3 justify-content-center gap-2" id="categoriesTab">
+            <!-- Tabs will be dynamically inserted here by JavaScript -->
         </ul>
         <hr>
+        <div class="tab-content" id="categoriesTabContent">
+            <!-- Tab panes will be dynamically inserted here by JavaScript -->
+        </div>
+        
+
+
         <!-- Plan Content -->
         <div class="tab-content" id="pills-tabContent">
             <!-- Popular Plans -->
-            <div class="tab-pane fade show active" id="pills-Popular-Plans" role="tabpanel" aria-labelledby="pills-popular-plans-tab"></div>
+            <div class="tab-pane fade show active" id="pills-Popular-Plans" role="tabpanel"
+                aria-labelledby="pills-popular-plans-tab"></div>
             <!-- Validity Plans -->
-            <div class="tab-pane fade" id="pills-Validity-Plans" role="tabpanel" aria-labelledby="pills-validity-plans-tab"></div>
+            <div class="tab-pane fade" id="pills-Validity-Plans" role="tabpanel"
+                aria-labelledby="pills-validity-plans-tab"></div>
             <!-- Data Plans -->
-            <div class="tab-pane fade" id="pills-Data-Plans" role="tabpanel" aria-labelledby="pills-data-plans-tab"></div>
+            <div class="tab-pane fade" id="pills-Data-Plans" role="tabpanel" aria-labelledby="pills-data-plans-tab">
+            </div>
             <!-- Unlimited Data Plans -->
-            <div class="tab-pane fade" id="pills-Unlimited-Data-Plans" role="tabpanel" aria-labelledby="pills-unlimited-data-plans-tab"></div>
+            <div class="tab-pane fade" id="pills-Unlimited-Data-Plans" role="tabpanel"
+                aria-labelledby="pills-unlimited-data-plans-tab"></div>
         </div>
-        
+
     </div>
 
     <!-- Plan Modal -->
@@ -214,7 +241,7 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                  <div class="plan-price mb-3" id="modalPlanPrice"></div>
+                    <div class="plan-price mb-3" id="modalPlanPrice"></div>
                     <div class="plan-validity mb-4" id="modalPlanValidity"></div>
                     <ul class="list-unstyled" id="modalPlanFeatures">
                         <!-- Features will be populated dynamically -->
@@ -258,48 +285,148 @@
         </div>
     </footer>
 
+    <!-- Toast Container -->
+    <div id="toastContainer" aria-live="polite" aria-atomic="true">
+        <!-- Toasts will be dynamically added here -->
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const baseURL = "http://localhost:8091/plans";
+    const categoriesURL = "http://localhost:8091/plans/categories";
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = sessionStorage.getItem('token');
+    
+    if (!token) {
+        showToast('Session expired. Please log in again.', 'danger');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Helper function to safely get DOM elements
+    const getElement = (id) => {
+        const el = document.getElementById(id);
+        if (!el) {
+            console.error(`Element with ID '${id}' not found`);
+            throw new Error(`Element with ID '${id}' not found`);
+        }
+        return el;
+    };
 
     try {
-        const response = await fetch(baseURL);
-        const plans = await response.json();
+        // First fetch categories
+        const categoriesResponse = await fetch(categoriesURL, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        
+        if (!categoriesResponse.ok) {
+            throw new Error("Failed to fetch categories");
+        }
+        
+        const allCategories = await categoriesResponse.json();
+        
+        // Then fetch plans
+        const plansResponse = await fetch(baseURL, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
 
-        // Map category names to tab-pane IDs
-        const categories = {
-            "POPULAR_PLAN": "pills-Popular-Plans",
-            "VALIDITY_PLAN": "pills-Validity-Plans",
-            "DATA_PLAN": "pills-Data-Plans",
-            "UNLIMITED_DATA_PLAN": "pills-Unlimited-Data-Plans",
+        if (!plansResponse.ok) {
+            throw new Error(`HTTP error! status: ${plansResponse.status}`);
+        }
+
+        const plans = await plansResponse.json();
+
+        // Get tab containers safely
+        const tabsContainer = getElement('categoriesTab');
+        const tabContentContainer = getElement('categoriesTabContent');
+        
+        // Clear existing tabs only if they exist
+        if (tabsContainer) tabsContainer.innerHTML = '';
+        if (tabContentContainer) tabContentContainer.innerHTML = '';
+        
+        // Icon mapping for categories
+        const iconMap = {
+            "POPULAR_PLAN": "fa-fire",
+            "DATA_PLAN": "fa-database",
+            "VALIDITY_PLAN": "fa-calendar-alt",
+            "UNLIMITED_DATA_PLAN": "fa-infinity"
         };
+
+        const categoryDisplayNames = {
+  "POPULAR_PLAN": "Popular Plans",
+  "VALIDITY_PLAN": "Validity Plans",
+  "DATA_PLAN": "Data Plans",
+  "UNLIMITED_DATA_PLAN": "Unlimited Data Plans"
+};
+
+const categoryDisplayOrder = [
+    "POPULAR_PLAN",  // Will appear first
+    "VALIDITY_PLAN",
+    "DATA_PLAN",
+    "UNLIMITED_DATA_PLAN"
+];
+
+allCategories.sort((a, b) => {
+    const indexA = categoryDisplayOrder.indexOf(a.name);
+    const indexB = categoryDisplayOrder.indexOf(b.name);
+    return indexA - indexB;
+});
+
+        // Create tabs and content panes
+        allCategories.forEach((category, index) => {
+            const displayName = categoryDisplayNames[category.name] || category.name;
+            // Create tab ID by replacing spaces with dashes
+            const tabId = `cat-${category.id}`;            
+            // Create tab button
+            const tab = document.createElement('li');
+            tab.className = 'nav-item';
+            tab.innerHTML = `
+                <button class="nav-link ${index === 0 ? 'active' : ''}" 
+                        data-bs-toggle="pill" 
+                        data-bs-target="#${tabId}"
+                        type="button">
+                    <i class="fas ${iconMap[category.name] || 'fa-mobile-alt'} me-2"></i>
+                    ${displayName}
+                </button>
+            `;
+            tabsContainer.appendChild(tab);
+            
+            // Create content pane
+            const pane = document.createElement('div');
+            pane.className = `tab-pane fade ${index === 0 ? 'show active' : ''}`;
+            pane.id = tabId;
+            pane.setAttribute('role', 'tabpanel');
+            tabContentContainer.appendChild(pane);
+        });
 
         // Group plans by category
         const groupedPlans = plans.reduce((acc, plan) => {
-            acc[plan.category] = acc[plan.category] || [];
-            acc[plan.category].push(plan);
+            const categoryName = plan.category.name.replace(/\s+/g, '-');
+            acc[categoryName] = acc[categoryName] || [];
+            acc[categoryName].push(plan);
             return acc;
         }, {});
 
-        // Log grouped plans for debugging
-        console.log("Grouped Plans:", groupedPlans);
-
         // Create cards for each category
         const createCards = (plans) => {
-            console.log("Creating cards for plans:", plans); // Debugging
+            if (!plans || plans.length === 0) {
+                return `<div class="text-center py-5">No plans available in this category</div>`;
+            }
+            
             return `
                 <div class="row">
                     ${plans.map(plan => `
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                            <div class="card plan-card" data-category="${plan.category}">
+                            <div class="card plan-card" data-category="${plan.category.name}" data-plan-id="${plan.id}">
                                 ${plan.badge ? `<span class="batch bg-success position-absolute top-0 start-0 rounded">${plan.badge}</span>` : ''}
                                 <div class="card-body mt-4">
                                     <h5 class="card-title plan-price">₹${plan.price}</h5>
                                     <h6 class="card-title plan-validity">${plan.validity}</h6>
-                                    <p class="card-text">${[plan.calls, plan.data, plan.sms].filter(value => value !== "No Calls" && value !== "No SMS").join(', ')}</p>
+                                    <p class="card-text">${[plan.calls, plan.data, plan.sms].filter(value => value && value !== "No Calls" && value !== "No SMS").join(', ')}</p>
                                     <p class="card-text additional"><b>${plan.additionalBenefits}</b></p>
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#planModal">View Details</button>
+                                    <button class="btn btn-primary view-details-btn" data-bs-toggle="modal" data-bs-target="#planModal">View Details</button>
                                 </div>
                             </div>
                         </div>
@@ -309,76 +436,186 @@
         };
 
         // Populate Categories
-        const populateCategories = (filterValue = "") => {
-            Object.entries(groupedPlans).forEach(([category, plans]) => {
-                const containerId = categories[category];
-                if (containerId) {
-                    const filteredPlans = plans.filter(plan => 
-                        plan.price.toString().includes(filterValue) || 
-                        plan.validity.toString().includes(filterValue));
-                    const cardsHTML = createCards(filteredPlans);
-                    console.log(`Rendering ${category} plans in container: ${containerId}`); // Debugging
-                    console.log("Cards HTML:", cardsHTML); // Debugging
-                    document.getElementById(containerId).innerHTML = cardsHTML;
-                } else {
-                    console.error(`No container found for category: ${category}`);
-                }
-            });
-        };
-
-        // Initial population of plans
-        populateCategories();
+        allCategories.forEach(category => {
+            const categoryName = category.name.replace(/\s+/g, '-');
+            const containerId = `cat-${category.id}`;
+            const container = document.getElementById(containerId);
+            
+            if (container) {
+                const categoryPlans = groupedPlans[categoryName] || [];
+                container.innerHTML = createCards(categoryPlans);
+            }
+        });
 
         // Filter input event listener
         const filterInput = document.getElementById('filterInput');
-        filterInput.addEventListener('input', (event) => {
-            const filterValue = event.target.value;
-            populateCategories(filterValue);
-        });
+        if (filterInput) {
+            filterInput.addEventListener('input', (event) => {
+                const filterValue = event.target.value.toLowerCase();
+                allCategories.forEach(category => {
+                    const categoryName = category.name.replace(/\s+/g, '-');
+                    const containerId = `pills-${categoryName}`;
+                    const container = document.getElementById(containerId);
+                    
+                    if (container) {
+                        const categoryPlans = groupedPlans[categoryName] || [];
+                        const filteredPlans = categoryPlans.filter(plan =>
+                            plan.price.toString().includes(filterValue) ||
+                            plan.validity.toLowerCase().includes(filterValue));
+                        
+                        container.innerHTML = createCards(filteredPlans);
+                    }
+                });
+            });
+        }
 
-        // Modal event listener
+        // Modal event delegation
         document.addEventListener("click", (event) => {
-            if (event.target.classList.contains("btn-primary")) {
-                const card = event.target.closest('.card');
-                const cardBody = card.querySelector('.card-body');
-                const planPrice = cardBody.querySelector('.plan-price').textContent;
-                const planValidity = cardBody.querySelector('.plan-validity')?.textContent.replace('Validity: ', '').trim() || 'No validity specified';
-                const planDescription = cardBody.querySelector('.card-text').textContent;
-                const additionalBenefits = cardBody.querySelector('.additional').textContent.replace('Additional Benefits: ', '') .trim() || 'No additional benefits specified';
+            if (event.target.classList.contains("view-details-btn")) {
+                const card = event.target.closest('.plan-card');
+                if (!card) return;
+                
+                const planId = card.getAttribute('data-plan-id');
+                const plan = plans.find(p => p.id == planId);
+                
+                if (plan) {
+                    const modal = getElement('planModal');
+                    const modalTitle = modal.querySelector('.modal-title');
+                    const modalBody = modal.querySelector('.modal-body');
+                    const confirmPaymentButton = modal.querySelector('#confirmPayment');
 
-                // Get the category of the selected plan from the data-category attribute
-                const planCategory = card.getAttribute('data-category');
+                    modalTitle.textContent = `${plan.category.name} Plan - ₹${plan.price}`;
+                    modalBody.innerHTML = `
+                        <div class="plan-price mb-3">₹${plan.price}</div>
+                        <div class="plan-validity mb-4">${plan.validity}</div>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-phone me-2"></i> ${plan.calls || 'No Calls'}</li>
+                            <li><i class="fas fa-database me-2"></i> ${plan.data || 'No Data'}</li>
+                            <li><i class="fas fa-sms me-2"></i> ${plan.sms || 'No SMS'}</li>
+                            ${plan.additionalBenefits ? `<li><i class="fas fa-gift me-2"></i> ${plan.additionalBenefits}</li>` : ''}
+                        </ul>
+                    `;
 
-                const modal = document.getElementById('planModal');
-                const modalTitle = modal.querySelector('.modal-title');
-                const modalBody = modal.querySelector('.modal-body');
-
-                modalTitle.textContent = 'Recharge Details for ' + planPrice;
-                modalBody.innerHTML = `
-                    <p><strong>Category: ${planCategory}</strong></p>
-                    <p><b>Validity:</b> ${planValidity}</p>
-                    <p><b>Benefits:</b> ${planDescription}</p>
-                    <p><b>Additional Benefits:</b> ${additionalBenefits}</p>
-                `;
-
-                const confirmPaymentButton = modal.querySelector('#confirmPayment');
-                confirmPaymentButton.onclick = () => {
-                    // Store all plan details in localStorage
-                    localStorage.setItem('planPrice', planPrice);
-                    localStorage.setItem('planValidity', planValidity);
-                    localStorage.setItem('planDescription', planDescription);
-                    localStorage.setItem('additionalBenefits', additionalBenefits);
-                    localStorage.setItem('planCategory', planCategory); // Store the category
-
-                    // Redirect to the payment page
-                    window.location.href = 'payment.html';
-                };
+                    // Razorpay Integration
+                    confirmPaymentButton.onclick = () => {
+                        const amount = parseFloat(plan.price) * 100;
+                        const options = {
+                            key: "rzp_test_mBlgExxIczBJwq",
+                            amount: amount,
+                            currency: "INR",
+                            name: "MobiComm",
+                            description: `Recharge: ${plan.category.name} Plan`,
+                            image: "https://example.com/logo.png",
+                            handler: async function(response) {
+                                showToast("Payment successful!", "success");
+                                await storePaymentDetails(plan, response.razorpay_payment_id);
+                            },
+                            prefill: {
+                                name: user.name,
+                                email: user.email,
+                                contact: user.mobileNumber
+                            },
+                            theme: { color: "#F5B915" }
+                        };
+                        
+                        const rzp = new Razorpay(options);
+                        rzp.open();
+                    };
+                }
             }
         });
+
+        // Function to store payment details and user history
+        async function storePaymentDetails(plan, paymentId) {
+            try {
+                const paymentData = {
+                    userId: user.id,
+                    planId: plan.id,
+                    amount: plan.price,
+                    paymentMethod: "Razorpay",
+                    transactionId: paymentId,
+                    status: "SUCCESS"
+                };
+                
+                const response = await fetch('http://localhost:8091/payment-details', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(paymentData)
+                });
+                
+                if (!response.ok) throw new Error("Failed to save payment");
+                
+                showToast('Payment successful!', 'success');
+            } catch (error) {
+                console.error("Error saving payment:", error);
+                showToast('Failed to save payment details', 'danger');
+            }
+        }
+
     } catch (error) {
-        console.error("Error fetching recharge plans:", error);
+        console.error("Error:", error);
+        showToast(error.message, 'danger');
     }
 });
+
+// ... [keep your existing calculateExpiryDate and showToast functions] ...
+
+async function calculateExpiryDate(userId, planId, newValidity) {
+    try {
+        const token = sessionStorage.getItem('token');
+        const response = await fetch(`http://localhost:8091/user-history/user/${userId}/plan/${planId}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        const existingRecharges = await response.json();
+        const newValidityDays = parseInt(newValidity.split(' ')[0]);
+
+        // Calculate total validity
+        const totalDays = existingRecharges.reduce((sum, recharge) => {
+            return sum + parseInt(recharge.validity.split(' ')[0]);
+        }, newValidityDays);
+
+        // Return expiry date (today + total days)
+        const today = new Date();
+        today.setDate(today.getDate() + totalDays);
+        return today.toISOString().split('T')[0];
+    } catch (error) {
+        console.error("Error calculating expiry:", error);
+        // Fallback: Just use new validity if calculation fails
+        const today = new Date();
+        today.setDate(today.getDate() + parseInt(newValidity.split(' ')[0]));
+        return today.toISOString().split('T')[0];
+    }
+}
+
+// Function to show Bootstrap Toasts
+function showToast(message, type = "info") {
+    const toastContainer = document.getElementById("toastContainer");
+
+    const toastEl = document.createElement("div");
+    toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
+    toastEl.setAttribute("role", "alert");
+    toastEl.setAttribute("aria-live", "assertive");
+    toastEl.setAttribute("aria-atomic", "true");
+
+    toastEl.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                ${message}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastEl);
+
+    const toast = new bootstrap.Toast(toastEl, { autohide: true, delay: 3000 });
+    toast.show();
+}
     </script>
 </body>
+
 </html>

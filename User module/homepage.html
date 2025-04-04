@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,7 @@
 
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-            url('assets/img2.jpg');
+                url('assets/img2.jpg');
             background-size: cover;
             background-position: center;
             padding: 120px 0;
@@ -34,10 +35,19 @@
 
         .navbar {
             background: linear-gradient(135deg, var(--primary-color), #1e40af);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
+            z-index: 1100;
+        }
+
+        #toastContainer {
+            position: fixed;
+            top: 70px;
+            /* Adjust based on navbar height */
+            right: 20px;
             z-index: 1000;
+            /* Ensure it's above other content but below the navbar */
         }
 
         .nav-pills .nav-link.active {
@@ -50,12 +60,12 @@
             border: none;
             border-radius: 12px;
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
 
         .plan-icon {
@@ -161,6 +171,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -168,11 +179,12 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="homepage.html">
                 <span class="fw-bold">MobiComm</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -206,17 +218,7 @@
                     <div class="card h-100 border-0 bg-primary text-white">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-tachometer-alt me-2"></i>Current Plan</h5>
-                            <div class="display-4 fw-bold mb-3">₹579</div>
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p class="mb-0">Validity</p>
-                                    <p class="fw-bold">56 Days</p>
-                                </div>
-                                <div>
-                                    <p class="mb-0">Days Left</p>
-                                    <p class="fw-bold">30 Days</p>
-                                </div>
-                            </div>
+                            <div id="currentPlanDetails"></div>
                         </div>
                     </div>
                 </div>
@@ -224,15 +226,7 @@
                     <div class="card h-100 border-0">
                         <div class="card-body">
                             <h5 class="card-title text-primary"><i class="fas fa-history me-2"></i>Recharge History</h5>
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0 mt-4">₹579 Plan</h6>
-                                    <small class="text-muted">28 Jan 2025 at 10:00 AM</small>
-                                </div>
-                            </div>
-                            <div class="progress mt-5" style="height: 6px;">
-                                <div class="progress-bar bg-primary" style="width: 54%"></div>
-                            </div>
+                            <div id="rechargeHistory"></div>
                             <a href="history.html" class="btn btn-sm btn-outline-primary mt-5">View All</a>
                         </div>
                     </div>
@@ -240,16 +234,19 @@
             </div>
         </div>
     </section>
-    
+
     <section class="py-5 bg-info">
         <div class="container">
             <h2 class="section-title text-center text-dark">Popular Plans</h2>
             <div class="row g-5 justify-content-center">
                 <div class="col-md-6 col-lg-3 d-flex justify-content-start align-items-center">
                     <a href="RechargePlans.html" class="btn btn-link p-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle text-dark" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5.793l-2.147-2.146a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8.5H5a.5.5 0 0 1-.5-.5z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-arrow-right-circle text-dark" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path fill-rule="evenodd"
+                                d="M4.5 8a.5.5 0 0 1 .5-.5h5.793l-2.147-2.146a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8.5H5a.5.5 0 0 1-.5-.5z" />
                         </svg>
                     </a>
                 </div>
@@ -264,9 +261,12 @@
             <div class="row g-5 justify-content-center">
                 <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-start align-items-center text-center">
                     <a href="RechargePlans.html" class="btn btn-link p-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle text-dark" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5.793l-2.147-2.146a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8.5H5a.5.5 0 0 1-.5-.5z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-arrow-right-circle text-dark" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path fill-rule="evenodd"
+                                d="M4.5 8a.5.5 0 0 1 .5-.5h5.793l-2.147-2.146a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8.5H5a.5.5 0 0 1-.5-.5z" />
                         </svg>
                     </a>
                 </div>
@@ -284,10 +284,14 @@
                 </div>
                 <div class="col-md-6">
                     <p class="lead">
-                        MobiComm is a leading mobile prepaid recharge company dedicated to providing seamless and instant recharge solutions to millions of users across the globe. Established in 2020, we have grown to become a trusted partner for mobile users, offering exclusive plans, exciting offers, and unparalleled customer service.
+                        MobiComm is a leading mobile prepaid recharge company dedicated to providing seamless and
+                        instant recharge solutions to millions of users across the globe. Established in 2020, we have
+                        grown to become a trusted partner for mobile users, offering exclusive plans, exciting offers,
+                        and unparalleled customer service.
                     </p>
                     <p class="lead">
-                        At MobiComm, we believe in transparency, reliability, and customer satisfaction. Join us today and experience the future of mobile recharges!
+                        At MobiComm, we believe in transparency, reliability, and customer satisfaction. Join us today
+                        and experience the future of mobile recharges!
                     </p>
                 </div>
             </div>
@@ -304,65 +308,82 @@
                         <!-- FAQ Item 1 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     How do I recharge my mobile using MobiComm?
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Recharging your mobile with MobiComm is simple! Enter your mobile number, just select your desired plan, and proceed to payment. Your recharge will be processed instantly.
+                                    Recharging your mobile with MobiComm is simple! Enter your mobile number, just
+                                    select your desired plan, and proceed to payment. Your recharge will be processed
+                                    instantly.
                                 </div>
                             </div>
                         </div>
                         <!-- FAQ Item 2 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     What payment methods are accepted?
                                 </button>
                             </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    We accept a variety of payment methods, including credit/debit cards, net banking, UPI, and popular digital wallets like Paytm and Google Pay.
+                                    We accept a variety of payment methods, including credit/debit cards, net banking,
+                                    UPI, and popular digital wallets like Paytm and Google Pay.
                                 </div>
                             </div>
                         </div>
                         <!-- FAQ Item 3 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     Can I recharge for someone else?
                                 </button>
                             </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Yes, you can recharge for someone else by simply entering their mobile number during the recharge process.
+                                    Yes, you can recharge for someone else by simply entering their mobile number during
+                                    the recharge process.
                                 </div>
                             </div>
                         </div>
                         <!-- FAQ Item 4 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingFour">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                     What should I do if my recharge fails?
                                 </button>
                             </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    If your recharge fails, please check your payment status. If the amount was deducted, it will be refunded within 24-48 hours. For further assistance, contact our support team.
+                                    If your recharge fails, please check your payment status. If the amount was
+                                    deducted, it will be refunded within 24-48 hours. For further assistance, contact
+                                    our support team.
                                 </div>
                             </div>
                         </div>
                         <!-- FAQ Item 5 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                     Are there any additional charges for using MobiComm?
                                 </button>
                             </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    No, MobiComm does not charge any additional fees. You only pay for the recharge plan you select.
+                                    No, MobiComm does not charge any additional fees. You only pay for the recharge plan
+                                    you select.
                                 </div>
                             </div>
                         </div>
@@ -381,7 +402,7 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                  <div class="plan-price mb-3" id="modalPlanPrice"></div>
+                    <div class="plan-price mb-3" id="modalPlanPrice"></div>
                     <div class="plan-validity mb-4" id="modalPlanValidity"></div>
                     <ul class="list-unstyled" id="modalPlanFeatures">
                         <!-- Features will be populated dynamically -->
@@ -390,6 +411,26 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-recharge" id="confirmPayment">Proceed to Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Plan Confirmation Modal -->
+    <div class="modal fade" id="activePlanModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Active Plan Detected</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You already have an active plan that expires on <span id="activePlanExpiryDate"></span>.</p>
+                    <p>Are you sure you want to proceed with a new recharge?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-recharge" id="confirmProceed">Proceed Anyway</button>
                 </div>
             </div>
         </div>
@@ -424,117 +465,512 @@
             <p class="text-center mb-0">&copy; 2025 MobiComm. All rights reserved</p>
         </div>
     </footer>
-    
-    
+
+    <!-- Toast Container -->
+    <div id="toastContainer" aria-live="polite" aria-atomic="true">
+        <!-- Toasts will be dynamically added here -->
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const popularPlansContainer = document.querySelector(".bg-info .row");
-    const dataPlansContainer = document.querySelector(".bg-success .row");
+        document.addEventListener("DOMContentLoaded", () => {
+            // Check if the user is authenticated (i.e., token exists)
+            const token = sessionStorage.getItem('token');
+            if (!token) {
+                showToast('Session expired. Please log in again.', 'danger');
+                window.location.href = 'login.html';
+                return;
+            }
 
-    // Fetch plans from the JSON server
-    fetch("http://localhost:3000/plans")
-        .then(response => response.json())
-        .then(plans => {
-            console.log("Fetched plans from server:", plans); // Log the fetched data
+            const user = JSON.parse(localStorage.getItem('user'));
+            // Fetch plans from the JSON server
+            const popularPlansContainer = document.querySelector(".bg-info .row");
+            const dataPlansContainer = document.querySelector(".bg-success .row");
 
-            // Filter plans based on category and get only the first 3 plans for each category
-            const popularPlans = plans
-                .filter(plan => plan.category === "Popular Plans")
-                .slice(0, 3); // Get only the first 3 popular plans
+            fetch("http://localhost:8091/plans", {
+                headers: {
+                    'Authorization': `Bearer ${token}` // Add JWT token to the request
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch plans');
+                    }
+                    return response.json();
+                })
+                .then(plans => {
+                    // Filter plans based on category and get only the first 3 plans for each category
+                    const popularPlans = plans
+                        .filter(plan => plan.category.name === "POPULAR_PLAN")
+                        .slice(0, 3); // Get only the first 3 popular plans
 
-            const dataPlans = plans
-                .filter(plan => plan.category === "Data Plans")
-                .slice(0, 3); // Get only the first 3 data plans
+                    const dataPlans = plans
+                        .filter(plan => plan.category.name === "DATA_PLAN")
+                        .slice(0, 3); // Get only the first 3 data plans
 
-            console.log("Popular Plans (First 3):", popularPlans); // Log popular plans
-            console.log("Data Plans (First 3):", dataPlans); // Log data plans
+                    // Populate Popular Plans
+                    popularPlans.forEach(plan => {
+                        const planCard = createPlanCard(plan);
+                        popularPlansContainer.insertBefore(planCard, popularPlansContainer.lastElementChild);
+                    });
 
-            // Populate Popular Plans
-            popularPlans.forEach(plan => {
-                const planCard = createPlanCard(plan);
-                popularPlansContainer.insertBefore(planCard, popularPlansContainer.lastElementChild);
+                    // Populate Data Plans
+                    dataPlans.forEach(plan => {
+                        const planCard = createPlanCard(plan);
+                        dataPlansContainer.insertBefore(planCard, dataPlansContainer.lastElementChild);
+                    });
+
+                    // Attach event listeners to the "View Details" buttons after the cards are added to the DOM
+                    attachModalEventListeners();
+                })
+                .catch(error => {
+                    console.error("Error fetching plans:", error);
+                    showToast('Unable to fetch plans. Please try again later.', 'danger');
+                });
+
+            // Function to create a plan card dynamically
+            function createPlanCard(plan) {
+                const card = document.createElement("div");
+                card.className = "col-md-6 col-lg-3";
+                card.innerHTML = `
+                    <div class="card h-100" data-plan-id="${plan.id}" data-category="${plan.category.name}">
+                        <span class="badge bg-success position-absolute top-0 start-0">${plan.badge}</span>
+                        <div class="card-body mt-4">
+                            <h5 class="card-title">₹${plan.price}</h5>
+                            <h5 class="card-title validity">${plan.validity}</h5>
+                            <p class="card-text">${[plan.calls, plan.data, plan.sms].filter(value => value !== "No Calls" && value !== "No SMS").join(', ')}</p>
+                            <p class="card-text additional"><b>${plan.additionalBenefits}</b></p>
+                            <a href="" class="btn btn-primary mt-auto align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">View Details</a>
+                        </div>
+                    </div>
+                `;
+                return card;
+            }
+
+            // Function to attach event listeners to the "View Details" buttons
+            function attachModalEventListeners() {
+                document.querySelectorAll(".btn-primary").forEach(button => {
+                    button.addEventListener("click", (event) => {
+                        try {
+                            const card = event.target.closest('.card');
+                            const cardBody = card.querySelector('.card-body');
+                            if (!cardBody) throw new Error("Card body not found!");
+
+                            const planPrice = cardBody.querySelector('.card-title')?.textContent || 'No price specified';
+                            const planValidity = cardBody.querySelector('.validity')?.textContent.replace('Validity: ', '').trim() || 'No validity specified';
+                            const planDescription = cardBody.querySelector('.card-text')?.textContent || 'No description available';
+                            const additionalBenefits = cardBody.querySelector('.additional')?.textContent.replace('Additional Benefits: ', '').trim() || 'No additional benefits specified';
+                            const planId = card.getAttribute('data-plan-id');
+                            const planCategory = card.getAttribute('data-category');
+
+                            const modal = document.getElementById('exampleModal');
+                            if (!modal) throw new Error("Modal element not found!");
+
+                            const modalTitle = modal.querySelector('.modal-title');
+                            const modalBody = modal.querySelector('.modal-body');
+                            const confirmPaymentButton = modal.querySelector('#confirmPayment');
+
+                            if (!modalTitle || !modalBody || !confirmPaymentButton) {
+                                throw new Error("Modal components are missing!");
+                            }
+
+                            // Update modal content
+                            modalTitle.textContent = `Recharge Details for ${planPrice}`;
+                            modalBody.innerHTML = `
+                                <p><strong>Category : ${planCategory}</strong><p>   
+                                <p><b>Validity :</b> ${planValidity}</p>
+                                <p><b>Benefits :</b> ${planDescription}</p>
+                                <p><b>Additional Benefits :</b>${additionalBenefits}</p>
+                            `;
+
+                            // Store plan details in the confirm payment button for later use
+                            confirmPaymentButton.dataset.planId = planId;
+                            confirmPaymentButton.dataset.planPrice = planPrice;
+                            confirmPaymentButton.dataset.planValidity = planValidity;
+                            confirmPaymentButton.dataset.planDescription = planDescription;
+                            confirmPaymentButton.dataset.additionalBenefits = additionalBenefits;
+                            confirmPaymentButton.dataset.planCategory = planCategory;
+                        } catch (error) {
+                            console.error("Error handling recharge button click:", error);
+                            showToast('Unable to process your request. Please try again later.', 'danger');
+                        }
+                    });
+                });
+            }
+
+            // Add event listener for the confirm payment button
+            document.getElementById('confirmPayment').addEventListener('click', function() {
+                const planId = this.dataset.planId;
+                const planPrice = this.dataset.planPrice;
+                const planValidity = this.dataset.planValidity;
+                const planDescription = this.dataset.planDescription;
+                const additionalBenefits = this.dataset.additionalBenefits;
+                const planCategory = this.dataset.planCategory;
+
+                // Check if user has an active plan
+                checkActivePlan(planId, planPrice, planValidity, planDescription, additionalBenefits, planCategory);
             });
 
-            // Populate Data Plans
-            dataPlans.forEach(plan => {
-                const planCard = createPlanCard(plan);
-                dataPlansContainer.insertBefore(planCard, dataPlansContainer.lastElementChild);
-            });
+            // Function to check if user has an active plan
+            async function checkActivePlan(planId, planPrice, planValidity, planDescription, additionalBenefits, planCategory) {
+                const token = sessionStorage.getItem('token');
+                if (!token) {
+                    showToast('Session expired. Please log in again.', 'danger');
+                    window.location.href = 'login.html';
+                    return;
+                }
 
-            // Attach event listeners to the "View Details" buttons after the cards are added to the DOM
-            attachModalEventListeners();
-        })
-        .catch(error => console.error("Error fetching plans:", error));
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (!user) {
+                    showToast('User not found. Please log in again.', 'danger');
+                    return;
+                }
 
-    // Function to create a plan card dynamically
-    function createPlanCard(plan) {
-        const card = document.createElement("div");
-        card.className = "col-md-6 col-lg-3";
-        card.innerHTML = `
-            <div class="card h-100">
-                <span class="badge bg-success position-absolute top-0 start-0">${plan.batch}</span>
-                <div class="card-body mt-4">
-                    <h5 class="card-title">₹${plan.price}</h5>
-                    <h5 class="card-title validity">Validity - ${plan.validity}</h5>
-                    <p class="card-text">${plan.benefits}</p>
-                    <p class="card-text additional"><b>Additional benefits: ${plan.additionalBenefits}</b></p>
-                    <a href="" class="btn btn-primary mt-auto align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">View Details</a>
-                </div>
-            </div>
-        `;
-        return card;
-    }
-
-    // Function to attach event listeners to the "View Details" buttons
-    function attachModalEventListeners() {
-        document.querySelectorAll(".btn-primary").forEach(button => {
-            button.addEventListener("click", (event) => {
                 try {
-                    const cardBody = event.target.closest('.card-body');
-                    if (!cardBody) throw new Error("Card body not found!");
+                    // Fetch user history
+                    const response = await fetch(`http://localhost:8091/user-history/user/${user.id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
 
-                    const planPrice = cardBody.querySelector('.card-title')?.textContent || 'No price specified';
-                    const planValidity = cardBody.querySelector('.validity')?.textContent || 'No validity specified';
-                    const planDescription = cardBody.querySelector('.card-text')?.textContent || 'No description available';
-                    const additionalBenefits = cardBody.querySelector('.additional')?.textContent || 'No additional benefits specified';
+                    if (!response.ok) throw new Error('Failed to fetch user history');
 
-                    const modal = document.getElementById('exampleModal');
-                    if (!modal) throw new Error("Modal element not found!");
-
-                    const modalTitle = modal.querySelector('.modal-title');
-                    const modalBody = modal.querySelector('.modal-body');
-                    const confirmPaymentButton = modal.querySelector('#confirmPayment');
-                    
-                    if (!modalTitle || !modalBody || !confirmPaymentButton) {
-                        throw new Error("Modal components are missing!");
+                    const history = await response.json();
+                    if (history.length === 0) {
+                        // No history found, proceed directly to payment
+                        proceedToPayment(planId, planPrice, planValidity, planDescription, additionalBenefits, planCategory);
+                        return;
                     }
 
-                    // Update modal content
-                    modalTitle.textContent = `Recharge Details for ${planPrice}`;
-                    modalBody.innerHTML = `
-                        <p>${planValidity}</p>
-                        <p>${planDescription}</p>
-                        <p>${additionalBenefits}</p>
-                    `;
+                    // Check for active plans
+                    const activePlan = history.find(plan => {
+                        const validityDays = parseInt(plan.validity.split(' ')[0]);
+                        const expiryDate = new Date(plan.date);
+                        expiryDate.setDate(expiryDate.getDate() + validityDays);
+                        return new Date() <= expiryDate; // Check if plan is still active
+                    });
 
-                    confirmPaymentButton.onclick = () => {
-                        // Save data to localStorage
-                        localStorage.setItem('planPrice', planPrice);
-                        localStorage.setItem('planValidity', planValidity);
-                        localStorage.setItem('planDescription', planDescription);
-                        localStorage.setItem('additionalBenefits', additionalBenefits);
-
-                        // Redirect to payment page
-                        window.location.href = 'payment.html';
-                    };
+                    if (activePlan) {
+                        // Show active plan confirmation modal
+                        const validityDays = parseInt(activePlan.validity.split(' ')[0]);
+                        const expiryDate = new Date(activePlan.date);
+                        expiryDate.setDate(expiryDate.getDate() + validityDays);
+                        
+                        document.getElementById('activePlanExpiryDate').textContent = expiryDate.toLocaleDateString();
+                        
+                        const activePlanModal = new bootstrap.Modal(document.getElementById('activePlanModal'));
+                        activePlanModal.show();
+                        
+                        // Set up the confirm proceed button
+                        document.getElementById('confirmProceed').onclick = () => {
+                            activePlanModal.hide();
+                            proceedToPayment(planId, planPrice, planValidity, planDescription, additionalBenefits, planCategory);
+                        };
+                    } else {
+                        // No active plan found, proceed directly to payment
+                        proceedToPayment(planId, planPrice, planValidity, planDescription, additionalBenefits, planCategory);
+                    }
                 } catch (error) {
-                    console.error("Error handling recharge button click:", error);
+                    console.error('Error checking active plan:', error);
+                    // If there's an error checking, proceed with payment anyway
+                    proceedToPayment(planId, planPrice, planValidity, planDescription, additionalBenefits, planCategory);
                 }
-            });
+            }
+
+            // Function to proceed with Razorpay payment
+            function proceedToPayment(planId, planPrice, planValidity, planDescription, additionalBenefits, planCategory) {
+                const amount = parseFloat(planPrice.replace('₹', '')) * 100; // Convert to paise
+                const options = {
+                    key: "rzp_test_mBlgExxIczBJwq", // Your Razorpay Key ID
+                    amount: amount, // Amount in paise
+                    currency: "INR",
+                    name: "MobiComm",
+                    description: "Mobile Recharge",
+                    image: "https://example.com/your_logo.png", // Add your logo URL
+                    handler: async function (response) {
+                        // Payment successful
+                        showToast("Payment successful! Payment ID: " + response.razorpay_payment_id, "success");
+
+                        // Store payment details and user history
+                        await storePaymentDetails(
+                            planId,
+                            planPrice,
+                            planValidity,
+                            planDescription,
+                            additionalBenefits,
+                            planCategory,
+                            "Razorpay",
+                            response.razorpay_payment_id // Pass Razorpay's payment ID
+                        );
+                    },
+                    prefill: {
+                        name: user.name, // Prefill user name
+                        email: user.email, // Prefill user email
+                        contact: user.mobileNumber // Prefill user contact
+                    },
+                    theme: {
+                        color: "#F5B915" // Customize theme color
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+            }
+
+            // Function to store payment details and user history
+            async function storePaymentDetails(planId, planPrice, planValidity, planDescription, additionalBenefits, planCategory, paymentMethod, razorpayPaymentId) {
+                const token = sessionStorage.getItem('token');
+                if (!token) {
+                    showToast('Session expired. Please log in again.', 'danger');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (!user) {
+                    showToast('User not found. Please log in again.', 'danger');
+                    return;
+                }
+
+                const paymentDetails = {
+                    transactionId: razorpayPaymentId, // Use Razorpay's payment ID
+                    userId: user.id,
+                    userName: user.name,
+                    planId: planId,
+                    planName: planCategory,
+                    amount: planPrice,
+                    paymentDate: new Date().toISOString().split('T')[0],
+                    paymentMethod: paymentMethod,
+                    status: "SUCCESS"
+                };
+
+                const userHistoryData = {
+                    userId: user.id,
+                    planId: planId,
+                    categoryName: planCategory,
+                    transactionId: razorpayPaymentId, // Use Razorpay's payment ID
+                    price: planPrice,
+                    date: new Date().toISOString().split('T')[0],
+                    validity: planValidity,
+                    planDetails: planDescription,
+                    additionalBenefits: additionalBenefits,
+                    expiryDate: calculateExpiryDate(user.id, planId, planValidity) // Add this line
+                };
+
+                try {
+                    // Save payment details
+                    const paymentResponse = await fetch('http://localhost:8091/payment-details', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify(paymentDetails)
+                    });
+
+                    if (!paymentResponse.ok) throw new Error('Failed to save payment details');
+
+                    // Save user history
+                    const historyResponse = await fetch('http://localhost:8091/user-history', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify(userHistoryData)
+                    });
+
+                    if (!historyResponse.ok) throw new Error('Failed to save user history');
+
+                    showToast('Payment and history saved successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'homepage.html';
+                    }, 2000);
+                } catch (error) {
+                    console.error('Error storing payment details:', error);
+                    showToast('Failed to store payment details. Please try again.', 'danger');
+                }
+            }
+
+            async function calculateExpiryDate(userId, planId, newValidity) {
+                try {
+                    const token = sessionStorage.getItem('token');
+                    const response = await fetch(`http://localhost:8091/user-history/user/${userId}/plan/${planId}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+
+                    const existingRecharges = await response.json();
+                    const newValidityDays = parseInt(newValidity.split(' ')[0]);
+
+                    // Calculate total validity
+                    const totalDays = existingRecharges.reduce((sum, recharge) => {
+                        return sum + parseInt(recharge.validity.split(' ')[0]);
+                    }, newValidityDays);
+
+                    // Return expiry date (today + total days)
+                    const today = new Date();
+                    today.setDate(today.getDate() + totalDays);
+                    return today.toISOString().split('T')[0];
+                } catch (error) {
+                    console.error("Error calculating expiry:", error);
+                    // Fallback: Just use new validity if calculation fails
+                    const today = new Date();
+                    today.setDate(today.getDate() + parseInt(newValidity.split(' ')[0]));
+                    return today.toISOString().split('T')[0];
+                }
+            }
+
+            function showToast(message, type = "info") {
+                const toastContainer = document.getElementById("toastContainer");
+
+                const toastEl = document.createElement("div");
+                toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
+                toastEl.setAttribute("role", "alert");
+                toastEl.setAttribute("aria-live", "assertive");
+                toastEl.setAttribute("aria-atomic", "true");
+
+                toastEl.innerHTML = `
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                `;
+
+                toastContainer.appendChild(toastEl);
+
+                const toast = new bootstrap.Toast(toastEl, { autohide: true, delay: 3000 });
+                toast.show();
+            }
+
+            // Fetch and display current plan and history
+            async function fetchUserPlanAndHistory() {
+                const token = sessionStorage.getItem('token');
+                if (!token) {
+                    showToast('Session expired. Please log in again.', 'danger');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (!user) {
+                    showToast('User not found. Please log in again.', 'danger');
+                    return;
+                }
+
+                try {
+                    // Fetch user history
+                    const response = await fetch(`http://localhost:8091/user-history/user/${user.id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    if (!response.ok) throw new Error('Failed to fetch user history');
+
+                    const history = await response.json();
+                    if (history.length === 0) {
+                        document.getElementById('currentPlanDetails').innerHTML = '<div class="text-center py-4">No active plan found</div>';
+                        document.getElementById('rechargeHistory').innerHTML = '<div class="text-center py-4">No recharge history found</div>';
+                        return;
+                    }
+
+                    // Sort by date to get the latest recharge
+                    history.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    // const latestRecharge = history[1];
+                    const activePlan = history.find(plan => {
+                        const validityDays = parseInt(plan.validity.split(' ')[0]);
+                        const expiryDate = new Date(plan.date);
+                        expiryDate.setDate(expiryDate.getDate() + validityDays);
+                        return new Date() <= expiryDate; // Check if plan is still active
+                    });
+
+
+                    // // Display current plan
+                    // displayCurrentPlan(latestRecharge);
+                    if (activePlan) {
+                        displayCurrentPlan(activePlan);
+                    } else {
+                        document.getElementById('currentPlanDetails').innerHTML = `
+                            <div class="text-center py-4">
+                                <p>No active plan. Your latest plan expired.</p>
+                                // <a href="rechargeplans.html" class="btn btn-light btn-sm">Recharge Now</a>
+                            </div>
+                        `;
+                    }
+
+                    // Display recharge history
+                    displayRechargeHistory(history);
+                } catch (error) {
+                    console.error('Error fetching user history:', error);
+                    showToast('Failed to load user data. Please try again.', 'danger');
+                }
+            }
+
+            function displayCurrentPlan(plan) {
+                const validityDays = parseInt(plan.validity.split(' ')[0]);
+                const rechargeDate = new Date(plan.date);
+                const expiryDate = new Date(rechargeDate);
+                expiryDate.setDate(rechargeDate.getDate() + validityDays);
+
+                const today = new Date();
+                const daysLeft = Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24));
+
+                const currentPlanHTML = `
+                    <div class="display-4 fw-bold mb-3">₹${plan.price}</div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="mb-0">Validity</p>
+                            <p class="fw-bold">${plan.validity}</p>
+                        </div>
+                        <div>
+                            <p class="mb-0">Days Left</p>
+                            <p class="fw-bold">${daysLeft > 0 ? daysLeft : 'Expired'}</p>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('currentPlanDetails').innerHTML = currentPlanHTML;
+            }
+
+            function displayRechargeHistory(history) {
+                const latestRecharge = history[0];
+                const historyHTML = `
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-0">₹${latestRecharge.price} </h6>
+                            <small class="text-muted">${new Date(latestRecharge.date).toLocaleDateString()} at ${new Date(latestRecharge.date).toLocaleTimeString()}</small>
+                        </div>
+                    </div>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar bg-primary" style="width: ${calculateUsagePercentage(latestRecharge)}%"></div>
+                    </div>
+                `;
+                document.getElementById('rechargeHistory').innerHTML = historyHTML;
+            }
+
+            function calculateUsagePercentage(plan) {
+                const validityDays = parseInt(plan.validity.split(' ')[0]);
+                const rechargeDate = new Date(plan.date);
+                const expiryDate = new Date(rechargeDate);
+                expiryDate.setDate(rechargeDate.getDate() + validityDays);
+
+                const today = new Date();
+                const totalDuration = expiryDate - rechargeDate;
+                const usedDuration = today - rechargeDate;
+
+                return Math.min(100, Math.max(0, Math.round((usedDuration / totalDuration) * 100)));
+            }
+
+            // Call the function to load data when page loads
+            fetchUserPlanAndHistory();
         });
-    }
-});
-</script>
+    </script>
+
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,7 @@
 
         .navbar {
             background: linear-gradient(135deg, var(--primary-color), #1e40af);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         }
 
         .card {
@@ -95,7 +96,7 @@
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .modal.show{
+        .modal.show {
             opacity: 1;
             visibility: visible;
         }
@@ -115,6 +116,15 @@
         .modal.show .modal-content {
             transform: scale(1);
         }
+
+        body.modal-open {
+    overflow: hidden; /* Prevent scrolling */
+    pointer-events: none; /* Disable interaction with the page */
+}
+
+body.modal-open .modal {
+    pointer-events: auto; /* Allow interaction with the modal */
+}
 
         .success-message {
             font-size: 1.5rem;
@@ -146,9 +156,11 @@
             0% {
                 transform: scale(0);
             }
+
             50% {
                 transform: scale(1.2);
             }
+
             100% {
                 transform: scale(1);
             }
@@ -188,7 +200,7 @@
             background: var(--secondary-color);
         }
 
-        .accordion-button i{
+        .accordion-button i {
             margin-right: 10px;
         }
 
@@ -216,11 +228,17 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -240,7 +258,8 @@
                 <h5 class="card-title" id="mobileNumber"></h5>
                 <h5 class="card-title mb-3" id="planTitle">Special title treatment</h5>
                 <h6 class="card-subtitle mb-2 text-muted" id="planValidity">Special title treatment</h6>
-                <p class="card-text" id="planDescription">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text" id="planDescription">With supporting text below as a natural lead-in to additional
+                    content.</p>
                 <p class="card-text" id="additionalBenefits"></p>
             </div>
         </div>
@@ -249,7 +268,8 @@
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne">
                         <i class="fas fa-credit-card"></i> Credit Card
                     </button>
                 </h2>
@@ -267,7 +287,8 @@
 
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo">
                         <i class="fas fa-credit-card"></i>Debit Card
                     </button>
                 </h2>
@@ -285,11 +306,13 @@
 
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree">
                         <i class="fas fa-wallet"></i>UPI
                     </button>
                 </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <input type="text" id="upiId" placeholder="UPI ID" required>
                         <button class="btn btn-primary mt-3" id="upiPay">Pay</button>
@@ -300,8 +323,8 @@
     </div>
 
     <!-- Loading Spinner -->
-    <div id="loadingSpinner" class="spinner-container" style="display: none;">
-        <div class="spinner"></div>
+    <div id="loadingSpinner" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.8); color: white; padding: 20px; border-radius: 5px;">
+        Processing your payment... Please wait.
     </div>
 
     <!-- Success Modal -->
@@ -344,193 +367,297 @@
             <p class="text-center mb-0">&copy; 2025 MobiComm. All rights reserved</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-    <script>
-        // Retrieve the plan details from localStorage
-        const planTitle = localStorage.getItem('planPrice');
-        const planDescription = localStorage.getItem('planDescription');
-        const planValidity = localStorage.getItem('planValidity');
-        const additionalBenefits = localStorage.getItem('additionalBenefits');
-        const category = localStorage.getItem('planCategory');
-
-        const user = JSON.parse(localStorage.getItem('user'));
-        // Update the payment page with the plan details
-        document.getElementById('planTitle').textContent = planTitle ? `Plan Amount: ${planTitle}` : 'No plan selected';       
-        document.getElementById('planValidity').textContent = planValidity ? `Plan Validity: ${planValidity}` : 'No validity available';
-        document.getElementById('planDescription').textContent = planDescription ? `Benefits: ${planDescription} `: 'No description available';
-        document.getElementById('additionalBenefits').textContent = additionalBenefits ? `Additional Benefits: ${additionalBenefits}` : 'No additional benefits available';
-        document.getElementById('mobileNumber').textContent = user && user.mobileNumber ? `Mobile No : ${user.mobileNumber}` : 'No mobile number defined';
+        <script>
+            // Function to show the loading spinner
+            function showLoadingSpinner() {
+                const spinner = document.getElementById('loadingSpinner');
+                if (spinner) {
+                    spinner.style.display = 'block'; // Show the spinner
+                }
+            }
         
-        document.getElementById('creditCardPay').addEventListener('click', function(event) {
-            const cardNumber = document.getElementById('creditCardNumber').value.trim();
-            const expiry = document.getElementById('creditCardExpiry').value.trim();
-            const cvv = document.getElementById('creditCardCVV').value.trim();
-
-            // Validate the card number (16 digits)
-            const cardNumberRegex = /^\d{16}$/;
-
-            if (!cardNumber || !expiry || !cvv) {
-                alert('Please fill in all Credit Card details before proceeding.');
-                event.preventDefault();
-            } else if (!cardNumberRegex.test(cardNumber)) {
-                alert('Credit Card Number must contain exactly 16 digits.');
-                event.preventDefault();
-            } else {
-                showLoadingSpinner(); // Show the spinner
-                setTimeout(() => {
-                    storePaymentDetails('Credit Card');
-                    hideLoadingSpinner(); // Hide the spinner
-                    showSuccessModal(); // Show the success modal
-                }, 2000);
+            // Function to hide the loading spinner
+            function hideLoadingSpinner() {
+                const spinner = document.getElementById('loadingSpinner');
+                if (spinner) {
+                    spinner.style.display = 'none'; // Hide the spinner
+                }
             }
-        });
-
-        document.getElementById('debitCardPay').addEventListener('click', function(event) {
-            const cardNumber = document.getElementById('debitCardNumber').value.trim();
-            const expiry = document.getElementById('debitCardExpiry').value.trim();
-            const cvv = document.getElementById('debitCardCVV').value.trim();
-
-            // Validate the card number (16 digits)
-            const cardNumberRegex = /^\d{16}$/;
-
-            if (!cardNumber || !expiry || !cvv) {
-                alert('Please fill in all Debit Card details before proceeding.');
-                event.preventDefault();
-            } else if (!cardNumberRegex.test(cardNumber)) {
-                alert('Debit Card Number must contain exactly 16 digits.');
-                event.preventDefault();
-            } else {
-                showLoadingSpinner(); // Show the spinner
-                setTimeout(() => {
-                    storePaymentDetails('Debit Card');
-                    hideLoadingSpinner(); // Hide the spinner
-                    showSuccessModal(); // Show the success modal
-                }, 2000);
+        
+            // Function to validate JWT token
+            function validateToken() {
+                const token = sessionStorage.getItem('token');
+                if (!token) {
+                    console.error('No token found. Redirecting to login page.');
+                    alert('Session expired. Please log in again.');
+                    sessionStorage.clear();
+                    window.location.href = 'login.html';
+                    return false;
+                }
+                return true;
             }
-        });
-
-        document.getElementById('upiPay').addEventListener('click', function(event) {
-            const upiId = document.getElementById('upiId').value.trim();
-
-            if (!upiId) {
-                alert('Please enter your UPI ID before proceeding.');
-                event.preventDefault();
-            } else {
-                showLoadingSpinner(); // Show the spinner
-                setTimeout(() => {
-                    storePaymentDetails('UPI');
-                    hideLoadingSpinner(); // Hide the spinner
-                    showSuccessModal(); // Show the success modal
-                }, 2000); 
-            }
-        });
-
-        function generateTransactionID() {
-            const randomNumbers = Math.floor(100000000 + Math.random() * 900000000); // Generate 9 random digits
-            return `TXN${randomNumbers}`; // Prefix with "TXN"
-        }
-
-
-        // Function to store payment details in the user's history on the JSON server
-        function storePaymentDetails(paymentMethod) {
-            const transactionID = generateTransactionID(); // Generate transaction ID
-            const paymentDetails = {
-                TransactionID: transactionID,
-                category: category, 
-                price: planTitle,
-                validity: planValidity,
-                planDetails: planDescription,
-                additionalBenefits : additionalBenefits,
-                paymentMethod: paymentMethod,
-                date: new Date().toISOString().split('T')[0],
-                paymentTime: new Date().toLocaleTimeString()
-            };
-
-            const user = JSON.parse(localStorage.getItem('user'));
-
-            if (user) {
-                // Fetch the user's history from the JSON server
-                fetch(`http://localhost:3000/usersHistory?name=${user.name}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        let userHistory = data[0]; // Assuming the first match is the correct user
-
-                        if (userHistory) {
-                            // Add the new payment details to the user's history
-                            userHistory.history.push(paymentDetails);
-
-                            // Update the user's history on the JSON server
-                            fetch(`http://localhost:3000/usersHistory/${userHistory.id}`, {
-                                method: 'PUT',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(userHistory)
-                            })
-                            .then(response => response.json())
-                            .then(updatedUserHistory => {
-                                console.log('Payment details added to user history:', updatedUserHistory);
-                            })
-                            .catch(error => {
-                                console.error('Error updating user history:', error);
-                            });
-                        } else {
-                            // If the user's history doesn't exist, create a new entry
-                            const newUserHistory = {
-                                name: user.name,
-                                history: [paymentDetails]
-                            };
-
-                            fetch('http://localhost:3000/usersHistory', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(newUserHistory)
-                            })
-                            .then(response => response.json())
-                            .then(newHistory => {
-                                console.log('New user history created:', newHistory);
-                            })
-                            .catch(error => {
-                                console.error('Error creating new user history:', error);
-                            });
+        
+            // Function to fetch user details using the JWT token
+            async function fetchUserDetails() {
+                try {
+                    const token = sessionStorage.getItem('token');
+                    if (!token) {
+                        throw new Error('No token found.');
+                    }
+        
+                    const response = await fetch('http://localhost:8091/users', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
                         }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching user history:', error);
                     });
-            } else {
-                console.error('User not found in localStorage');
+        
+                    if (response.status === 401 || response.status === 403) {
+                        console.error('Authorization failed. Please log in again.');
+                        alert('Session expired. Please log in again.');
+                        sessionStorage.clear();
+                        window.location.href = 'login.html';
+                        return null;
+                    }
+        
+                    if (!response.ok) throw new Error('Failed to fetch user details.');
+        
+                    const users = await response.json();
+                    const user = JSON.parse(localStorage.getItem('user')); // Get user from localStorage
+                    return users.find(u => u.id === user.id); // Match user by ID
+                } catch (error) {
+                    console.error('Error fetching user details:', error);
+                    alert('Unable to fetch user details. Please try again later.');
+                    return null;
+                }
             }
+        
+            // Function to initialize the payment page
+            async function initializePaymentPage() {
+                if (!validateToken()) return;
+        
+                const user = await fetchUserDetails();
+                if (!user) {
+                    console.error('User details not found.');
+                    return;
+                }
+        
+                // Retrieve plan details from localStorage
+                const planPrice = localStorage.getItem('planPrice');
+                const planDescription = localStorage.getItem('planDescription');
+                const planValidity = localStorage.getItem('planValidity');
+                const additionalBenefits = localStorage.getItem('additionalBenefits');
+        
+                // Update the payment page with the plan details
+                document.getElementById('planTitle').textContent = planPrice ? `Plan Amount: ${planPrice}` : 'No plan selected';
+                document.getElementById('planValidity').textContent = planValidity ? `Plan Validity: ${planValidity}` : 'No validity available';
+                document.getElementById('planDescription').textContent = planDescription ? `Benefits: ${planDescription}` : 'No description available';
+                document.getElementById('additionalBenefits').textContent = additionalBenefits ? `Additional Benefits: ${additionalBenefits}` : 'No additional benefits available';
+                document.getElementById('mobileNumber').textContent = user.mobileNumber ? `Mobile No: ${user.mobileNumber}` : 'No mobile number defined';
+            }
+        
+            // Function to generate a transaction ID
+            function generateTransactionID() {
+                const randomNumbers = Math.floor(100000 + Math.random() * 900000); // Generate 9 random digits
+                return `TXN${randomNumbers}`; // Prefix with "TXN"
+            }
+        
+            // Function to store payment details securely
+            async function storePaymentDetails(paymentMethod) {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        console.error('No token found. Redirecting to login page.');
+        alert('Session expired. Please log in again.');
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const transactionID = generateTransactionID();
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (!user) {
+        console.error('User not found in localStorage');
+        alert('User not found. Please log in again.');
+        return;
+    }
+
+    const paymentDetails = {
+        transactionId: transactionID,
+        userId: user.id,
+        userName: user.name,
+        planId: localStorage.getItem('planId'),
+        planName: localStorage.getItem('planCategory'),
+        amount: localStorage.getItem('planPrice'),
+        paymentDate: new Date().toISOString().split('T')[0], // Current date
+        paymentMethod: paymentMethod,
+        status: "SUCCESS"
+    };
+
+    try {
+        // Step 1: Save payment details to the backend
+        console.log('Saving payment details:', paymentDetails);
+        const paymentResponse = await fetch('http://localhost:8091/payment-details', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(paymentDetails)
+        });
+
+        if (!paymentResponse.ok) {
+            const errorResponse = await paymentResponse.json(); // Parse error response
+            console.error('Failed to save payment details:', errorResponse);
+            throw new Error(`Payment details API error: ${paymentResponse.statusText}`);
         }
 
-        function showLoadingSpinner() {
-            const spinner = document.getElementById('loadingSpinner');
-            spinner.style.display = 'flex'; // Show the spinner
+        const paymentData = await paymentResponse.json();
+        console.log('Payment details saved successfully:', paymentData);
+
+        // Step 2: Create a UserHistory entry
+        const userHistoryData = {
+            userId: user.id,
+            planId: localStorage.getItem('planId'),
+            categoryName: localStorage.getItem('planCategory'),
+            transactionId: transactionID,
+            price: localStorage.getItem('planPrice'),
+            date: new Date().toISOString().split('T')[0], // Current date
+            validity: localStorage.getItem('planValidity'),
+            planDetails: localStorage.getItem('planDescription'),
+            additionalBenefits: localStorage.getItem('additionalBenefits')
+        };
+
+        console.log('Saving user history:', userHistoryData);
+        const historyResponse = await fetch('http://localhost:8091/user-history', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(userHistoryData)
+        });
+
+        if (!historyResponse.ok) {
+            const errorResponse = await historyResponse.json(); // Parse error response
+            console.error('Failed to create UserHistory entry:', errorResponse);
+            throw new Error(`UserHistory API error: ${historyResponse.statusText}`);
         }
 
-        function hideLoadingSpinner() {
-            const spinner = document.getElementById('loadingSpinner');
-            spinner.style.display = 'none'; // Hide the spinner
-        }    
+        const historyData = await historyResponse.json();
+        console.log('UserHistory created successfully:', historyData);
 
-        function showSuccessModal() {
-            const modal = document.getElementById('successModal');
-            modal.classList.add('show'); // Show the modal
-
-            window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.classList.remove('show'); // Hide the modal
+        showSuccessModal(); // Show the success modal
+    } catch (error) {
+        console.error('Error in storePaymentDetails:', error);
+        alert('An error occurred while processing your payment. Please try again.');
+    }
+}
+        
+            // Event listeners for payment methods
+            document.getElementById('creditCardPay').addEventListener('click', async function (event) {
+                event.preventDefault();
+                if (!validateToken()) return;
+        
+                const cardNumber = document.getElementById('creditCardNumber').value.trim();
+                const expiry = document.getElementById('creditCardExpiry').value.trim();
+                const cvv = document.getElementById('creditCardCVV').value.trim();
+        
+                const cardNumberRegex = /^\d{16}$/;
+        
+                if (!cardNumber || !expiry || !cvv) {
+                    alert('Please fill in all Credit Card details before proceeding.');
+                } else if (!cardNumberRegex.test(cardNumber)) {
+                    alert('Credit Card Number must contain exactly 16 digits.');
+                } else {
+                    showLoadingSpinner();
+                    setTimeout(() => {
+                        storePaymentDetails('Credit Card');
+                        hideLoadingSpinner();
+                    }, 2000);
+                }
+            });
+        
+            document.getElementById('debitCardPay').addEventListener('click', async function (event) {
+                event.preventDefault();
+                if (!validateToken()) return;
+        
+                const cardNumber = document.getElementById('debitCardNumber').value.trim();
+                const expiry = document.getElementById('debitCardExpiry').value.trim();
+                const cvv = document.getElementById('debitCardCVV').value.trim();
+        
+                const cardNumberRegex = /^\d{16}$/;
+        
+                if (!cardNumber || !expiry || !cvv) {
+                    alert('Please fill in all Debit Card details before proceeding.');
+                } else if (!cardNumberRegex.test(cardNumber)) {
+                    alert('Debit Card Number must contain exactly 16 digits.');
+                } else {
+                    showLoadingSpinner();
+                    setTimeout(() => {
+                        storePaymentDetails('Debit Card');
+                        hideLoadingSpinner();
+                    }, 2000);
+                }
+            });
+        
+            document.getElementById('upiPay').addEventListener('click', async function (event) {
+                event.preventDefault();
+                if (!validateToken()) return;
+        
+                const upiId = document.getElementById('upiId').value.trim();
+        
+                if (!upiId) {
+                    alert('Please enter your UPI ID before proceeding.');
+                } else {
+                    showLoadingSpinner();
+                    setTimeout(() => {
+                        storePaymentDetails('UPI');
+                        hideLoadingSpinner();
+                    }, 2000);
                 }
             });
 
-            document.getElementById('goHomeButton').addEventListener('click', () => {
-                event.preventDefault();
-                window.location.href = 'homepage.html'; // Redirect to homepage
-            });
-        }
-    </script>
+            function showSuccessModal() {
+                const modal = document.getElementById('successModal');
+                if (modal) {
+                    modal.classList.add('show'); // Show the modal
+                    document.body.classList.add('modal-open');
+                } else {
+                    console.error('Success modal not found.');
+                }
+            }
+
+            
+// Function to hide the success modal
+function hideSuccessModal() {
+    const modal = document.getElementById('successModal');
+    if (modal) {
+        modal.classList.remove('show'); // Remove the 'show' class to hide the modal
+        document.body.classList.remove('modal-open');
+    }
+}
+
+document.getElementById('goHomeButton').addEventListener('click', function (event) {
+    event.preventDefault();
+    hideSuccessModal(); // Hide the modal
+    window.location.href = 'homepage.html'; // Redirect to the homepage
+});
+
+// Close modal when clicking outside of it
+window.addEventListener('click', function (event) {
+    const modal = document.getElementById('successModal');
+    if (event.target === modal) {
+        hideSuccessModal(); // Hide the modal if the user clicks outside of it
+    }
+});
+        
+            // Initialize the payment page
+            initializePaymentPage();
+        </script>
 </body>
+
 </html>
